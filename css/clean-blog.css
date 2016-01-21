@@ -218,6 +218,13 @@ hr.small {
   font-size: 20px;
   font-style: italic;
 }
+.reading-time {
+  color: #808080;
+  font-size: 18px;
+  font-style: italic;
+  margin-top: 0;
+  padding-left: 20px;
+}
 .post-preview > a {
   color: #404040;
 }

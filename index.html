@@ -11,7 +11,7 @@ description: "Web, iOS, Design, Literature"
     </a>
     <p class="post-meta">{{ post.date | date: "%B %-d, %Y" }}
     {% if post.reading_time %}
-      <p class="post-meta"><i class="fa fa-clock-o"></i>{{ post.reading_time }}</p>
+      <span class="reading-time"><i class="fa fa-clock-o"></i>{{ post.reading_time }}</span>
     {% endif %}
     </p>
     {{ post.excerpt }}
