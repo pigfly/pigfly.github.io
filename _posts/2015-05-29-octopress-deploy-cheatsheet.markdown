@@ -5,6 +5,7 @@ date: 2015-05-29 16:15:17 +1000
 comments: true
 header-img: "/img/post-bg-01.jpg"
 categories: [octopress, blogging]
+reading_time: "5 mins"
 ---
 
 I've been fiddling with octopress for a while now, it's time to collect those broken commands into some tangible forms,
