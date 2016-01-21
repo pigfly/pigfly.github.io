@@ -61,6 +61,7 @@ Here is a short description of how to do the migration:
 ------------
 
 The CRUD:
+
 - use `rails console --sandbox` to start CRUD without side effects
 - Create
   - `first_user = User.new(name: "Superman", email: "superman@gmail.com")`
