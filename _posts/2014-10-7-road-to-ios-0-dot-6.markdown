@@ -34,7 +34,7 @@ categories: [ios]
 - **initWithFrame:** is designated initializer
 - **drawRect:** is for custom drawing
 
-``` objective-c what a view class looks like
+{% highlight objective-c %}
 // designated initializer
 - (id)initWithFrame:(CGRect)frame
 {
@@ -51,7 +51,7 @@ categories: [ios]
 {
 	...
 }
-```
+{% endhighlight %}
 
 ## Create a View
 - To create a view, you need to get its **frame**
@@ -63,7 +63,7 @@ categories: [ios]
 	- add view instance as subview
 
 
-``` objective-c create view in view controller's loadView method
+{% highlight objective-c %}
 - (void)loadView
 {
 	// 1. specify the view's frame
@@ -82,7 +82,7 @@ categories: [ios]
 	// e.g. [firstView addSubview: secondView];
 	self.view = firstView;
 }
-```
+{% endhighlight %}
 <br>
 ------------
 
@@ -99,7 +99,7 @@ categories: [ios]
 	- Draw the line
 
 
-``` objective-c create custom drawing in drawRect:
+{% highlight objective-c %}
 - (void)loadView
 {
 	// 1. Specify the bounds of view
@@ -130,7 +130,7 @@ categories: [ios]
 	// 5. Draw the line!
 	[path stroke];
 }
-```
+{% endhighlight %}
 
 <br>
 ------------
@@ -147,7 +147,7 @@ categories: [ios]
 - Then **run loop** then sends the **drawRect:** message to those "dirty views"
 - To get a view on the re-rendered lists, you **must** send view the message **setNeedDisplay**
 
-``` objective-c implement event handler when touch begins in vew
+{% highlight objective-c %}
 // When a finger touches the screen
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -163,7 +163,7 @@ categories: [ios]
 
     self.circleColor = randomColor;
 }
-```
+{% endhighlight %}
 
 ``` objective-c send view setNeedsDisplay message in accessor
 - (void)setCircleColor:(UIColor *)circleColor

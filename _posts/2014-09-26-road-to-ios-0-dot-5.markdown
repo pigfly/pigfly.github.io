@@ -40,7 +40,7 @@ categories: [ios]
 - That means, you need to make your controller as *root controller* of this window.
 - **appDelegate**, manages a single top-level **UIWindow** for the application.
 
-``` objective-c make your controller as root controller
+{% highlight objective-c %}
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -53,7 +53,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
         return YES;
 }
-```
+{% endhighlight %}
 
 <br>
 ------------
@@ -63,7 +63,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 - **designated initializer**,  no matter how many init methods are,  one method is chosen as
 designated, it makes sure that every instance variable of an object is valid.
 
-``` objective-c pattern for designated init
+{% highlight objective-c %}
 - (instancetype)initWithxxx:(yyy)zzz
 		       	 xxx:(yyy)zzz...
 {
@@ -76,12 +76,12 @@ designated, it makes sure that every instance variable of an object is valid.
 
 	return self;
 }
-```
+{% endhighlight %}
 
 #### Controller Initializer
 When an instance of controller is created, it is sent the message **initWithNibName:bundle**
 
-``` objective-c controller init
+{% highlight objective-c %}
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil
 			    bundle:(NSBundle *)nibBundleOrNil
 {
@@ -94,7 +94,7 @@ When an instance of controller is created, it is sent the message **initWithNibN
 
 	return self;
 }
-```
+{% endhighlight %}
 
 #### Instancetype
 - Why not return specific type ?  all about polymorphism

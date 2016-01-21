@@ -104,7 +104,7 @@ A navigation controller is a container view controller—that is, **it embeds th
 	- create your own
 	- by **subclassing either the UIViewController** class or the UITableViewController class
 
-![ 600 600 UINavigationController view components ](/images/ios/UINavigationController_view_hierarchy.jpg)
+![UINavigationController view components ](/images/ios/UINavigationController_view_hierarchy.jpg)
 
 <br>
 ------------
@@ -124,7 +124,7 @@ A navigation controller is a container view controller—that is, **it embeds th
 #### Prepare for the segues
 The segue offers the source VC the opportunity to “prepare” the new VC to come on screen. This method is sent to the VC that contains the button that initiated the segue:
 
-``` objective-c prepare for segue
+{% highlight objective-c %}
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	// check the segue id we set in storyboard
     if ([segue.identifier isEqualToString:@“DoSomething”]) {
@@ -136,11 +136,11 @@ The segue offers the source VC the opportunity to “prepare” the new VC to co
 		}
 	}
 }
-```
+{% endhighlight %}
 
 #### Push, Pop lifecycle
 
-![ 600 300 push pop lifecycle ](/images/ios/uinavigation_lifecycle.png)
+![push pop lifecycle](/images/ios/uinavigation_lifecycle.png)
 
 <br>
 ------------

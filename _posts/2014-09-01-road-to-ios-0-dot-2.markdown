@@ -26,10 +26,10 @@ categories: [ios]
 - **After** an object receives an awakeFromNib message, it is guaranteed to have all its outlet instance variables set
 - Anything that would go in your Controller’s init method would have to go in awakeFromNib
 
-``` objective-c example of init. awakeFromNib
+{% highlight objective-c %}
 - (void)setup{}; //dosomething which can’t wait until viewDidLoad
 - (void)awakeFromNib { [self setup]; }
-```
+{% endhighlight %}
 
 ### viewDidLoad
 - Only get called **once**
@@ -38,7 +38,7 @@ categories: [ios]
 - Geometry of your view (its bounds) is **not** set yet!
 - A fantistic place for init. Better than your controller init. for your outlet now is set!
 
-``` objective-c example of init. button title in viewDidLoad
+{% highlight objective-c %}
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *outlineButton;
 @end
@@ -58,7 +58,7 @@ categories: [ios]
 
     [self.outlineButton setAttributedTitle:title forState:UIControlStateNormal];
 }
-```
+{% endhighlight %}
 
 ### viewWillLayoutSubviews: and viewDidLayoutSubviews:
 - Called any time a view’s frame changed and its subviews were thus re-layed out. e.g. autorotation
@@ -69,7 +69,7 @@ categories: [ios]
 - `- (void)viewWillAppear:(BOOL)animated;` a place to do something if things you display are changing while your MVC is off-screen.
 - `- (void)viewWillDisappear:(BOOL)animated` a place to put “remember what’s going on” and cleanup code.
 
-``` objective-c example of viewWillDisappear
+{% highlight objective-c %}
 - (void)viewWillDisappear:(BOOL)animated
 {
 [super viewWillDisappear:animated]; // call super in all the viewWill/Did... methods
@@ -80,7 +80,7 @@ categories: [ios]
 // but be careful not to do anything time-consuming here, or app will be sluggish
 // maybe even kick off a thread to do what needs doing here
 }
-```
+{% endhighlight %}
 
 ### didReceiveMemoryWarning
 - iOS gets its right to kill your app if you are a memory eater...

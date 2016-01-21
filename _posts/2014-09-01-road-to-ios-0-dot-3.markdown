@@ -38,14 +38,14 @@ categories: [ios]
 ### Get default notification
 Each running Cocoa program has a default notification center. You typically don’t create your own.
 
-``` objective-c get default notification
+{% highlight objective-c %}
 [NSNotificationCenter defaultCenter]
-```
+{% endhighlight %}
 
 ### Register at notification center
 Register observer(yourself) at notification center if you want to listen to broadcast, In this example, we are listening to system broadcast(UIContentSizeCategoryDidChangeNotification)
 
-``` objective-c register at notification
+{% highlight objective-c %}
 // the oberserver here is controller itself
 // object : whos change you're interested in. Nil, meaning anyone can send notification to controller
 // name is the name of the station
@@ -65,12 +65,12 @@ Register observer(yourself) at notification center if you want to listen to broa
 {
 ...
 }
-```
+{% endhighlight %}
 
 ### Remove observer at notification center
 Failure to remove yourself can sometimes result in crashers.
 
-``` objective-c remove yourself at notification
+{% highlight objective-c %}
 [[NSNotificationCenter defaultCenter] removeObserver:someObserver];
 // or
 // use this for best practise, since you may listen to several stations at same time
@@ -82,7 +82,7 @@ Failure to remove yourself can sometimes result in crashers.
 // be careful in this method! can’t access properties! you are almost gone from heap!
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-```
+{% endhighlight %}
 
 <br>
 ----------

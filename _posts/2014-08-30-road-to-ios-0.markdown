@@ -20,10 +20,10 @@ Determining the methods of different kinds of objects to invoke at runtime rathe
 
 2. Dynamic Binding enables polymorphsim. Different objects can have same interface, and by using the interface as a type, invoking methods in different objects. Here is a piece of code showing polymorphsim for objects in Objective-C.
 
-``` objective-c polymorphsim for objects http://pigfly.github.io/blog/2014/08/30/road-to-ios-0/
+{% highlight objective-c %}
 NSArray *ar = [NSArray arrayWithObjects:car, ship, tiger, nil];
 for (id obj in ar) { [obj run];}
-```
+{% endhighlight %}
 
 ### When do we need Dynamic Binding
 1. mix objects of different classes in a collection (e.g. in an NSArray)
@@ -45,23 +45,23 @@ A unique identifier for a method at runtime
 
 1. As mentioned earlier, the selector, and together with invoked object reference enable polymorphsim in objective-c. We can use selector for the above example, the selector could be used with an instance of each of the classes to invoke its run method—even though the implementation might be different for each.
 
-``` objective-c using selector in objective-c for different objects http://pigfly.github.io/blog/2014/08/30/road-to-ios-0/
+{% highlight objective-c %}
 SEL s = @selector(run);
 [car performSelector:aSelector];
-```
+{% endhighlight %}
 
 2. When your View Controller have target-action pattern, usually we will use selector for invoking methods, rather than just sending message, for the communication from View to Controller is a blind structed way, there is no way for controller to figure out who is the sender until runtime.
 
-``` objective-c selector in target-action pattern for different objects http://pigfly.github.io/blog/2014/08/30/road-to-ios-0/
+{% highlight objective-c %}
 - (void)addTarget:(id)anObject action:(SEL)action ...;
 [button addTarget:self action:@selector(digitPressed:) ...];
-```
+{% endhighlight %}
 
 ### A cool selector usage
-``` objective-c cool selector usages for different objects http://pigfly.github.io/blog/2014/08/30/road-to-ios-0/
+{% highlight objective-c %}
 // let objects perform method in NSArray
 [array makeObjectsPerformSelector:shootSelector];
-```
+{% endhighlight %}
 
 <br>
 
@@ -83,24 +83,24 @@ The selector is usually used for performing polymorphsim behavior, it's part of 
 
 ### Introspection
 It's really about dependency checking...
-``` objective-c dependency checking http://pigfly.github.io/blog/2014/08/30/road-to-ios-0/
+{% highlight objective-c %}
 // get class by sending class message to class
 // in this case, we send class message to NSString to check if obj inherents from NSString
 if ([obj isKindOfClass:[NSString class]]) {
 	// if obj is subclass is NSString, we can safely cast
     NSString *s = [(NSString *)obj stringByAppendingString:@”xyzzy”];
 }
-```
+{% endhighlight %}
 
 Sometimes, we also want to make sure some classes indeed hold methods we want to invoke...
-``` objective-c methods checking http://pigfly.github.io/blog/2014/08/30/road-to-ios-0/
+{% highlight objective-c %}
 // respondsToSelector: returns whether an object responds to a given method
 if ([obj respondsToSelector:@selector(shoot)]) {
     [obj shoot];
 } else if ([obj respondsToSelector:@selector(shootAt:)]) {
     [obj shootAt:target];
 }
-```
+{% endhighlight %}
 
 #### A picture showing introspection life cycle
 ![ introspection ](/images/ios/introspection.png)
