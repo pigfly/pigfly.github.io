@@ -5,6 +5,7 @@ date: 2015-06-01 10:39:49 +1000
 comments: true
 header-img: "img/post-bg-02.jpg"
 categories: [rails, ruby]
+reading_time: "15 mins"
 ---
 
 This post contains my learning notes and some reflections towards rails model, model validation, and its

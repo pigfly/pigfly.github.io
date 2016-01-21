@@ -9,7 +9,11 @@ description: "Web, iOS, Design, Literature"
         <h2 class="post-title">            {{ post.title }}
         </h2>
     </a>
-    <p class="post-meta">{{ post.date | date: "%B %-d, %Y" }}</p>
+    <p class="post-meta">{{ post.date | date: "%B %-d, %Y" }}
+    {% if post.reading_time %}
+      <p class="post-meta"><i class="fa fa-clock-o"></i>{{ post.reading_time }}</p>
+    {% endif %}
+    </p>
     {{ post.excerpt }}
     <div class="post-readmore">
       <a href="{{ post.url | prepend: site.baseurl }}">
