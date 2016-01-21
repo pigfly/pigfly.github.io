@@ -12,7 +12,6 @@ associated testing.
 
 <!--more-->
 
-## Model, ActiveRecord, Migration
 - Model
   - Rails uses *database* for storage by default
 - ActiveRecord
@@ -32,8 +31,7 @@ touching SQL. <br>
 ![model](/images/rails/rails_model_migration_activerecord.png)
 
 ------------
-
-## Migration in detail
+Here is a short description of how to do the migration:
 - Use rails cli to generate model
   - e.g. `rails g model User name:string email:string`
   - {% gist 94ac6c6d6a2ad511a734 generate_user_model %}
@@ -62,7 +60,7 @@ touching SQL. <br>
 
 ------------
 
-## CRUD with data models
+The CRUD:
 - use `rails console --sandbox` to start CRUD without side effects
 - Create
   - `first_user = User.new(name: "Superman", email: "superman@gmail.com")`
@@ -85,7 +83,7 @@ touching SQL. <br>
 
 ------------
 
-## Model Validation
+The Model Validation:
 - Use TDD for model validations
   - `user_test.rb` from model generation
   - {% gist 94ac6c6d6a2ad511a734 user_test.rb %}
@@ -106,7 +104,6 @@ touching SQL. <br>
 
 -----------------
 
-## Reference
 - Michael Hartl's [rails tutorial](https://www.railstutorial.org/book/modeling_users)
 - Rails [API docs](http://api.rubyonrails.org/)
 - Rails [Guides docs](http://edgeguides.rubyonrails.org/active_record_migrations.html)
