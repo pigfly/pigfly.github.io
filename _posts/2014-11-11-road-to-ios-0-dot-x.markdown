@@ -1,8 +1,9 @@
 ---
 layout: post
-title: "road to iOS 0.x"
+title: "Road to iOS Series 9"
 date: 2014-11-11 02:14:19 +1000
 comments: true
+header-img: "img/post-bg-05.jpg"
 categories: [ios]
 ---
 
@@ -28,7 +29,7 @@ For better understanding this issue, first I will introduce ways of generating P
 for ( int i = 0 ; i < self.numberOfPages ; i++ )
     {
         UIGraphicsBeginPDFPage();
-        
+
         [self drawPageAtIndex: i inRect: bounds];
     }
 
@@ -52,9 +53,9 @@ for (int i = 0 ;i < pages ;i++)
         // Specify the size of the pdf page
         UIGraphicsBeginPDFPageWithInfo(CGRectMake(0, 0, kPaperWidthA4, kPaperHeightA4), nil);
         CGContextRef currentContext = UIGraphicsGetCurrentContext();
-        
+
         CGContextTranslateCTM(currentContext, kMargin, -(maxHeight * i) + kMargin);
-        
+
         [scrollView setContentOffset:CGPointMake(0, maxHeight * i) animated:NO];
 
         [scrollView.layer renderInContext:currentContext];

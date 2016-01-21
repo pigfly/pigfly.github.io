@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Road to iOS 0"
+title: "Road To iOS Series 0"
 date: 2014-08-30 18:31:18 +1000
 comments: true
-header-img: "img/post-bg-02.jpg"
+header-img: "img/post-bg-01.jpg"
 categories: [iOS]
 ---
 

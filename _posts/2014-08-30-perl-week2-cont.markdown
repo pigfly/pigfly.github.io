@@ -1,8 +1,9 @@
 ---
 layout: post
-title: "perl week2 cont"
+title: "Perl Cheatsheet 3"
 date: 2014-08-30 17:28:42 +1000
 comments: true
+header-img: "img/post-bg-03.jpg"
 categories: [perl]
 ---
 
@@ -31,11 +32,11 @@ categories: [perl]
 	- how can we escape from that, to tell perl not to trigger matching var in parens ?
 	- to avoid triggering memory, change `(…)` to `(?:…)`
 	- e.g. `/(\S+)(?:and|or)(\S+)/` the middle parens won't be counted as $2, instead, the last parens is $2.
-	
+
 - Named captures
 	- even better way, to tell which parens I want to capture, and give name to that matching var.
 	- e.g. `/(?<name1>\S+)(lorem)/` now `print "$+{name1}"` will print the content of matching \S+ in the named capture you create.
-	
+
 ----------
 
 ### Substitution
@@ -46,12 +47,12 @@ categories: [perl]
 	- RegEx triggers back reference var: `s/with(\w+)/without$1/` like said before, $1 is special var in double quoted string context, will be replaced by its value
 	- idiom: `if (s/old/new/) {…}`
 - Alternate delimiter
-	- e.g. `#^https://#http://#` again, don't put `^`in http, it's merely treated as "string"! 
+	- e.g. `#^https://#http://#` again, don't put `^`in http, it's merely treated as "string"!
 - More Modes
 	- **Global** matching, `s/\s+/ /g` transform to canonical whitespace
 	- case-insensitive, `s/old/new/i`
 	- `.` including new lines, `s/old/new/s`
-	
+
 -------------
 
 - **List-context match**
@@ -75,5 +76,3 @@ categories: [perl]
 	- N.B. all these happen in "string"!
 	- e.g. `s/(\w+)/\U$1/`
 	- e.g. `s/(\w{2})/\u\L$1/ig` **initial cap**
- 
-   

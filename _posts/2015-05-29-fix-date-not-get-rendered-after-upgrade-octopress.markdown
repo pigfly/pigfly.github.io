@@ -1,8 +1,9 @@
 ---
 layout: post
-title: "Fix date not get rendered after upgrade octopress"
+title: "Fix Date Issue"
 date: 2015-05-29 10:05:04 +1000
 comments: true
+header-img: "img/post-bg-05.jpg"
 categories: [octopress, blogging]
 ---
 
@@ -13,7 +14,7 @@ me this journey.
 <!--more-->
 
 ## The problem
-The date for post doesn't get rendered. {% img /images/octopress/date_missing_in_post.png 100 100 date missing %} <br>
+The date for post doesn't get rendered. ![date missing](/images/octopress/date_missing_in_post.png) <br>
 And when I inspects the relevant source code it shows the time tag only with something like this `<time datetime="2014-12-30T06:30:00+01:00" pubdate data-updated="true"></time>`. So where is actually date text ?
 
 ------------------------
@@ -50,4 +51,4 @@ So using these two lines solve my issue, holy cow !
 ## Forth Try
 The issue has already been patched with this commit by octopress [patch](https://github.com/imathis/octopress/commit/73e540409ceb8bc18048b6a96a4b815fc303ea28)
 {% gist 4a396d183fd1cc1e7451 patch.diff %}
-Now, my post date gets back :) {% img /images/octopress/date_get_back_in_post.png 100 100 date back %}
+Now, my post date gets back :)

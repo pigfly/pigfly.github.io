@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "road to iOS 0.6"
+title: "Road To iOS Series 6"
 date: 2014-10-7 4:14:19 +1000
 comments: true
 categories: [ios]
@@ -22,7 +22,7 @@ categories: [ios]
 - When you add a view as subview of another view, the **superview** and **subviews**  properties are automatically established
 - Classes like **UIButton**, **UILabel** already know how to draw themselves to their layers
 
-![ 267 380 view hierarchy diagram ](/images/ios/view_hierarchy_2.png)
+![view hierarchy diagram ](/images/ios/view_hierarchy_2.png)
 
 [image source](http://photosynthesiis.github.io/blog/2014/03/09/ios-4/)
 
@@ -139,9 +139,9 @@ categories: [ios]
 - When user touches a view, the view is sent the message **touchesBegan:withEvent:**
 - It's a view's event handler in the **run loop**
 
-{% blockquote @developer.BNR  %}
-When an app is launched, it starts a run loop, or run lifecycle. Its job is to listen for events, such as touch. When an event occurs, it finds the appropriate handler methods for event. Once finished, control returns to the run loop.
-{% endblockquote %}
+> When an app is launched, it starts a run loop, or run lifecycle. Its job is to listen for events, such as
+> touch. When an event occurs, it finds the appropriate handler methods for event. Once finished, control
+> returns to the run loop.
 
 - When **run loop** regains control, it checks a list of "dirty views" - views that need to be re-rendered
 - Then **run loop** then sends the **drawRect:** message to those "dirty views"

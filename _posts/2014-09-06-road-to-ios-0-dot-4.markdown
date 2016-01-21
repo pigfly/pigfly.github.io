@@ -1,8 +1,9 @@
 ---
 layout: post
-title: "road to iOS 0.4"
+title: "Road To iOS Series 4"
 date: 2014-09-06 12:14:19 +1000
 comments: true
+header-img: "img/post-bg-03.jpg"
 categories: [ios]
 ---
 
@@ -17,9 +18,11 @@ categories: [ios]
 <!--more-->
 
 ### What is UINavigationController
-{% blockquote @developer.apple https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007457 About View Controllers %}
-Whenever an iOS app displays a user interface, the displayed content is managed by a view controller or a group of view controllers coordinating with each other. Therefore, view controllers provide the skeletal framework on which you build your apps.
-{% endblockquote %}
+
+> Whenever an iOS app displays a user interface, the displayed content is managed by a view controller or a
+> group of view controllers coordinating with each other. Therefore, view controllers provide the skeletal
+> framework on which you build your apps.
+
 
 - It's a View Controller **manages stacks of other view controllers**
 - An MVC's view is another MVC

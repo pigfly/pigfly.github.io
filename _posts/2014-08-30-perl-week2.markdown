@@ -1,12 +1,11 @@
 ---
 layout: post
-title: "perl week2"
+title: "Perl CheatSheet 5"
 date: 2014-08-30 02:57:15 +1000
 comments: true
+header-img: "img/post-bg-05.jpg"
 categories:  [perl]
 ---
-
-## Perl w2
 
 ### List and Array
 
@@ -44,7 +43,7 @@ categories:  [perl]
 
 #### Perl's Default Scalar: `$_`
 
-- designer's choice, programmers don't need to think about var name and type. 
+- designer's choice, programmers don't need to think about var name and type.
 - omit control var from beginning of loop, perl uses `$_` as default control var.
 - `for (1..10) { $_ += 10; }`
 - `$_ = "perl ruby python"; print`, will print perl ruby python
@@ -56,7 +55,7 @@ categories:  [perl]
 - e.g. `@people = qw(me mum); @list = @people` list here is list, `#num = @people` the number of people, 2
 - e.g. `123 + sth` is scalar context, because `+` is for scalar !
 - e.g. `print @ar."\n"`: is scalar context, print size of array
-- e.g. scalar (@ar) is scalar context, print size of array 
+- e.g. scalar (@ar) is scalar context, print size of array
 - in a nutshell, if you see some operators belonging to list, then its list context, otherwise, its scalar context.
 
 ---------
@@ -68,4 +67,4 @@ categories:  [perl]
 	- `$item` automatically become `my` var. any outer `$item` is unaffected
 	- `$item` as pointer, assigning to `$item` affects the `@rock`
 	- `for (@rock) { $_ = "hard $_" }`
-	- `" "` evaluates all symbols in it, `' '` just treats as literal string 
+	- `" "` evaluates all symbols in it, `' '` just treats as literal string

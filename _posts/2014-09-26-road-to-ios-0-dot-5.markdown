@@ -1,8 +1,9 @@
 ---
 layout: post
-title: "road to iOS 0.5"
+title: "Road To iOS Series 5"
 date: 2014-09-26 1:14:19 +1000
 comments: true
+header-img: "img/post-bg-04.jpg"
 categories: [ios]
 ---
 
@@ -39,8 +40,8 @@ categories: [ios]
 - That means, you need to make your controller as *root controller* of this window.
 - **appDelegate**, manages a single top-level **UIWindow** for the application.
 
-``` objective-c make your controller as root controller 
-- (BOOL)application:(UIApplication *)application 
+``` objective-c make your controller as root controller
+- (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
         // init window
@@ -59,7 +60,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 ### Initializers
 - begins with word **init**, name convention only
-- **designated initializer**,  no matter how many init methods are,  one method is chosen as 
+- **designated initializer**,  no matter how many init methods are,  one method is chosen as
 designated, it makes sure that every instance variable of an object is valid.
 
 ``` objective-c pattern for designated init
@@ -86,7 +87,7 @@ When an instance of controller is created, it is sent the message **initWithNibN
 {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 
-	if (self) 
+	if (self)
 	{
 		....
 	}

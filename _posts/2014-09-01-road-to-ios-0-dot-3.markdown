@@ -1,8 +1,9 @@
 ---
 layout: post
-title: "road to iOS 0.3"
+title: "Road To iOS Series 3"
 date: 2014-09-01 19:28:13 +1000
 comments: true
+header-img: "img/post-bg-01.jpg"
 categories: [ios]
 ---
 
@@ -25,9 +26,12 @@ categories: [ios]
 ![ UIViewController Lifecycle ](/images/ios/notificationcenter.png)
 
 ### Benefit of Broadcast Model in Notification
-{% blockquote @developer.apple https://developer.apple.com/library/mac/documentation/General/Conceptual/DevPedia-CocoaCore/Notification.html#//apple_ref/doc/uid/TP40008195-CH35 Notification %}
-The object sending (or posting) the notification doesn’t have to know what those observers are. Notification is thus a powerful mechanism for attaining coordination and cohesion in a program. It reduces the need for strong dependencies between objects in a program (such dependencies would reduce the reusability of those objects).
-{% endblockquote %}
+
+> The object sending (or posting) the notification doesn’t have to know what those observers are.
+> Notification is thus a powerful mechanism for attaining coordination and cohesion in a program. It reduces
+> the need for strong dependencies between objects in a program (such dependencies would reduce the
+> reusability of those objects).
+
 <br>
 -----------
 

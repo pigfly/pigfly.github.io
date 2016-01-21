@@ -1,8 +1,9 @@
 ---
 layout: post
-title: "Rails: Model and its associated testing"
+title: "Rails Model"
 date: 2015-06-01 10:39:49 +1000
 comments: true
+header-img: "img/post-bg-02.jpg"
 categories: [rails, ruby]
 ---
 
@@ -28,7 +29,7 @@ associated testing.
 Both ActiveRecord and Migration provide a high level way of interacting with database using Domain Specific Language without
 touching SQL. <br>
 
-{% img center /images/rails/rails_model_migration_activerecord.png 520 400 model %}
+![model](/images/rails/rails_model_migration_activerecord.png)
 
 ------------
 

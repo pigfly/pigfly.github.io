@@ -1,8 +1,9 @@
 ---
 layout: post
-title: "Octopress deploy cheatsheet"
+title: "Octopress Cheatsheet"
 date: 2015-05-29 16:15:17 +1000
 comments: true
+header-img: "/img/post-bg-01.jpg"
 categories: [octopress, blogging]
 ---
 

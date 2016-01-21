@@ -1,8 +1,9 @@
 ---
 layout: post
-title: "road to iOS 0.7"
+title: "Road To iOS Series 7"
 date: 2014-10-12 12:14:19 +1000
 comments: true
+header-img: "img/post-bg-05.jpg"
 categories: [ios]
 ---
 
@@ -25,7 +26,7 @@ categories: [ios]
 ### Create view programmatically
 In your own view controller class(which can be created by inheriting **UIViewController**), override the **loadview**:
 
-``` objective-c create view in view controller's loadView method 
+``` objective-c create view in view controller's loadView method
 - (void)loadView
 {
 	// 1. specify the view's frame
@@ -46,11 +47,11 @@ In your own view controller class(which can be created by inheriting **UIViewCon
 }
 ```
 
-However, the code above is for creating view hierarchy in view controller only, 
-it has nothing to do with the actual view appeared on the screen. To connect a 
+However, the code above is for creating view hierarchy in view controller only,
+it has nothing to do with the actual view appeared on the screen. To connect a
 view in view controller with screen, you need to use **UIwindow**'s **setRootViewController**.
 
-``` objective-c set root view controller in appDelegate.m 
+``` objective-c set root view controller in appDelegate.m
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -74,7 +75,7 @@ view in view controller with screen, you need to use **UIwindow**'s **setRootVie
 	- **make sure your xib's name is named the same as your view controller** (xcode uses this to automatically load nib file i.e. init the view)
 	- **connect** your controller to your xib(e.g. File's owner, IBOutlet, IBAction)
 
-``` objective-c create view controller according to your xib file 
+``` objective-c create view controller according to your xib file
 @interface YourOwnViewController ()
 
 // IBOutlet is typedef as void, it's only for xcode to identify the specific element in xib
