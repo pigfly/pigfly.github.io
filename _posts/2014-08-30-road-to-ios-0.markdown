@@ -1,8 +1,9 @@
 ---
 layout: post
-title: "road to iOS 0"
+title: "Road to iOS 0"
 date: 2014-08-30 18:31:18 +1000
 comments: true
+header-img: "img/post-bg-02.jpg"
 categories: [iOS]
 ---
 
@@ -11,10 +12,11 @@ categories: [iOS]
 ### What is Dynamic Binding
 Determining the methods of different kinds of objects to invoke at runtime rather than at compile-time.
 
+<!--more-->
+
 ### Why we need Dynamic Binding
 1. Since all objects live in the heap, there is no way for compiler to know which object will be created at compile time. In other words, memory for objects will be dynmaically allocated. So we need a mechanism to distinguish various objects and their associated properties, methods etc.
 
-<!--more-->
 
 2. Dynamic Binding enables polymorphsim. Different objects can have same interface, and by using the interface as a type, invoking methods in different objects. Here is a piece of code showing polymorphsim for objects in Objective-C.
 
@@ -100,8 +102,8 @@ if ([obj respondsToSelector:@selector(shoot)]) {
 }
 ```
 
-#### A picture showing introspection life cycle 
-{% img /images/ios/introspection.png introspection %}
+#### A picture showing introspection life cycle
+![ introspection ](/images/ios/introspection.png)
 
 [image source](https://developer.apple.com/library/mac/navigation/)
 
@@ -111,7 +113,7 @@ if ([obj respondsToSelector:@selector(shoot)]) {
 Using polymorphsim with `id` greatly make codes more reusable, also, we can do dependency and method checking by using introspection.
 
 ## Mindmap for dynamic binding
-{% img /images/ios/dynamic-binding.png Dynamic Binding Mindmap %}
+![ Dynamic Binding Mindmap ](/images/ios/dynamic-binding.png)
 
 <br>
 -------------
