@@ -22,7 +22,7 @@ categories: [ios]
 - When you add a view as subview of another view, the **superview** and **subviews**  properties are automatically established
 - Classes like **UIButton**, **UILabel** already know how to draw themselves to their layers
 
-{% img /images/ios/view_hierarchy_2.png 267 380 view hierarchy diagram %}
+![ 267 380 view hierarchy diagram ](/images/ios/view_hierarchy_2.png)
 
 [image source](http://photosynthesiis.github.io/blog/2014/03/09/ios-4/)
 
@@ -34,14 +34,14 @@ categories: [ios]
 - **initWithFrame:** is designated initializer
 - **drawRect:** is for custom drawing
 
-``` objective-c what a view class looks like 
+``` objective-c what a view class looks like
 // designated initializer
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // do init setup for your view
-       
+
     }
     return self;
 }
@@ -53,17 +53,17 @@ categories: [ios]
 }
 ```
 
-## Create a View 
+## Create a View
 - To create a view, you need to get its **frame**
 - A **frame** specifies the view's size and its position relative to its superview, and it's always in a **rectangle** model.
-- Steps for creating a view : 
+- Steps for creating a view :
 	- Specify the view's frame
 	- Init an instance of view
 	- configure the view instance
 	- add view instance as subview
 
 
-``` objective-c create view in view controller's loadView method 
+``` objective-c create view in view controller's loadView method
 - (void)loadView
 {
 	// 1. specify the view's frame
@@ -99,7 +99,7 @@ categories: [ios]
 	- Draw the line
 
 
-``` objective-c create custom drawing in drawRect: 
+``` objective-c create custom drawing in drawRect:
 - (void)loadView
 {
 	// 1. Specify the bounds of view
@@ -122,7 +122,7 @@ categories: [ios]
 	            startAngle:0.0
 	              endAngle:M_PI * 2.0
 	             clockwise:YES];
-	
+
 
 	// Configure the drawing color to light gray
 	[[UIColor lightGrayColor] setStroke];
@@ -147,7 +147,7 @@ When an app is launched, it starts a run loop, or run lifecycle. Its job is to l
 - Then **run loop** then sends the **drawRect:** message to those "dirty views"
 - To get a view on the re-rendered lists, you **must** send view the message **setNeedDisplay**
 
-``` objective-c implement event handler when touch begins in vew 
+``` objective-c implement event handler when touch begins in vew
 // When a finger touches the screen
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -165,7 +165,7 @@ When an app is launched, it starts a run loop, or run lifecycle. Its job is to l
 }
 ```
 
-``` objective-c send view setNeedsDisplay message in accessor 
+``` objective-c send view setNeedsDisplay message in accessor
 - (void)setCircleColor:(UIColor *)circleColor
 {
 	self.circleColor = circleColor;

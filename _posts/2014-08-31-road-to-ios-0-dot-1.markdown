@@ -9,7 +9,7 @@ categories: [ios]
 ## Attributed String & UITextView in Objective-C
 
 ### What is Attributed String
-Determine how text will render on the screen. You can think of `NSAttributedString` as an NSString where each character has an NSDictionary of "attributes". 
+Determine how text will render on the screen. You can think of `NSAttributedString` as an NSString where each character has an NSDictionary of "attributes".
 
 ``` objective-c example of creating attributed strings
 // this will create a dictionary for holding diifferent standard attributes
@@ -23,7 +23,7 @@ NSDictionary *attrsDictionary =
 	  NSStrokeWidthAttributeName : @-5,
 	  NSStrokeColorAttributeName : [UIColor redColor] }
 // creating attributed string using attribute dictionary
-NSAttributedString *attrString = 
+NSAttributedString *attrString =
 	[[NSAttributedString alloc] initWithString:@"string" attributes:attrsDictionary];
 ```
 
@@ -64,7 +64,7 @@ Just a `NSRange *` used as an method parameter
 - get the value for an attribute
 
 ``` objective-c get the value for an attribute from NSAttributedString
-- (id)attribute:(NSString *)attributeName atIndex:(NSUInteger)index 
+- (id)attribute:(NSString *)attributeName atIndex:(NSUInteger)index
 								   effectiveRange:(NSRangePointer)aRange
 // attributeName: the name of standard attribute
 // aRange: If you don't need this value, pass NULL
@@ -83,7 +83,7 @@ Just a `NSRange *` used as an method parameter
 Since NSAttributedString is **immutable**, we need `NSMutableAttributedString` to do all the settings...
 
 ``` objective-c setting attributes on characters
-// add an attribute to a range of characters 
+// add an attribute to a range of characters
 - (void)addAttributes:(NSDictionary *)attributes range:(NSRange)range;
 // set attributes in a range
 - (void)setAttributes:(NSDictionary *)attributes range:(NSRange)range;
@@ -131,7 +131,7 @@ NSRange r = [[attributedString string] rangeOfString:substring];
 -------------
 
 ### Mindmap for NSAttributedString
-{% img /images/ios/NSAttributedString.png NSAttributedString Mindmap %}
+![ NSAttributedString Mindmap ](/images/ios/NSAttributedString.png)
 
 <br>
 -------------

@@ -45,7 +45,7 @@ categories: [ios]
 -(void)viewDidLoad
 {
 	// always call super for letting superclass init.
-    [super viewDidLoad]; 
+    [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 
 	// because we are not textview, we have to convert title to mutablestring
@@ -71,7 +71,7 @@ categories: [ios]
 ``` objective-c example of viewWillDisappear
 - (void)viewWillDisappear:(BOOL)animated
 {
-[super viewWillDisappear:animated]; // call super in all the viewWill/Did... methods 
+[super viewWillDisappear:animated]; // call super in all the viewWill/Did... methods
 // let’s be nice to the user and remember the scroll position they were at ...
 [self rememberScrollPosition]; // we’ll have to implement this
 // do some other clean up now that we’ve been removed from the screen
@@ -90,7 +90,7 @@ categories: [ios]
 ------------
 
 ### Picture of View Controller Lifecycle
-{% img /images/ios/uiviewcontroller_lifecycle.png UIViewController Lifecycle %}
+![ UIViewController Lifecycle ](/images/ios/uiviewcontroller_lifecycle.png)
 
 [image source](http://rdkw.wordpress.com/2013/02/24/ios-uiviewcontroller-lifecycle/)
 
@@ -103,4 +103,3 @@ categories: [ios]
 3. [UIViewController_Class Reference](https://developer.apple.com/library/ios/documentation/uikit/reference/UIViewController_Class/Reference/Reference.html)
 4. [ViewController Programming](https://developer.apple.com/library/ios/featuredarticles/viewcontrollerpgforiphoneos/ViewLoadingandUnloading/ViewLoadingandUnloading.html)
 5. [Stackoverflow](http://stackoverflow.com/questions/5562938/looking-to-understand-the-ios-uiviewcontroller-lifecycle)
-

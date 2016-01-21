@@ -8,8 +8,8 @@ categories: [ios]
 
 # All about Nib file
 
-## Anatomy of Nib file 
-- **User interface** objects(Visual elements) 
+## Anatomy of Nib file
+- **User interface** objects(Visual elements)
 - **File Owner**, placeholder, a **controller** object that is responsible for contents of nib file.
 	- Usually you will want to connect a controller to the nib file, so that controller's **view** can be connected with nib's top-level object
 	- However, if you want to break a view into different nib components,  then assemble them together in one controller, you can leave this **File Owner** blank, and load all nibs in your controller.
@@ -34,7 +34,7 @@ When you use methods of **NSBundle** to load and instantiate the objects in nib 
 3. It **reestablishes all connections** (actions, outlets, and bindings) between objects in the nib file.
 	- **Outlet connections**
 		- The nib-loading code uses the **setValue:forKey:** to reconnect each outlet
-		- Setting an outlet also generates a **key-value observing (KVO)** notification for any registered observers. 
+		- Setting an outlet also generates a **key-value observing (KVO)** notification for any registered observers.
 			- That's why if sometimes you forget to connect oulet in your code to nib file, it will prompt key-value pair not matched !
 	- **Action connections**
 		- In iOS, the nib-loading code uses the **addTarget:action:forControlEvents:** method of the UIControl object to configure the action. If the target is nil, the action is handled by the responder chain.
@@ -73,7 +73,7 @@ Be mindful that if you need to configure the objects in your nib file further at
 	...
 
 	self.view = first;
-}	
+}
 ```
 
 <br>
@@ -91,7 +91,7 @@ Be mindful that if you need to configure the objects in your nib file further at
 A common mistake is to call **initWithFrame** in controller, which only affects those view created pure programmatically. It has nothing to do with Your nib file. You need to call **loadNibNamed** in controller at least once to give your nib file a chance to finish nib-loading life cycle !
 
 ## Nib Anatomy Mindnode
-{% img /images/ios/nib_anatomy.png 805 585 Nib Anatomy %}
+![ 805 585 Nib Anatomy ](/images/ios/nib_anatomy.png)
 
 
 <br>

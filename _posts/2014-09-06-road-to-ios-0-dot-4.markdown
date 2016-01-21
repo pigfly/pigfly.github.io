@@ -18,13 +18,13 @@ categories: [ios]
 
 ### What is UINavigationController
 {% blockquote @developer.apple https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007457 About View Controllers %}
-Whenever an iOS app displays a user interface, the displayed content is managed by a view controller or a group of view controllers coordinating with each other. Therefore, view controllers provide the skeletal framework on which you build your apps. 
+Whenever an iOS app displays a user interface, the displayed content is managed by a view controller or a group of view controllers coordinating with each other. Therefore, view controllers provide the skeletal framework on which you build your apps.
 {% endblockquote %}
 
 - It's a View Controller **manages stacks of other view controllers**
 - An MVC's view is another MVC
 
-{% img /images/ios/navigation_interface.png 600 480 navigation interface overview %}
+![ 600 480 navigation interface overview ](/images/ios/navigation_interface.png)
 
 [image source](https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/Art/navigation_interface_2x.png)
 
@@ -35,7 +35,7 @@ If user wants to see more detail information about current view, navigation cont
 
 ### How does UINavigationController work
 
-#### Overview 
+#### Overview
 <script type="text/javascript" src="/javascripts/libs/jssor.core.js"></script>
 <script type="text/javascript" src="/javascripts/libs/jssor.utils.js"></script>
 <script type="text/javascript" src="/javascripts/libs/jssor.slider.min.js"></script>
@@ -61,7 +61,7 @@ If user wants to see more detail information about current view, navigation cont
             <div><img u="image" src="/images/ios/mvc_working_together3.png" /></div>
             <div><img u="image" src="/images/ios/mvc_working_together4.png" /></div>
         </div>
-        
+
         <style>
             .jssorb03 div, .jssorb03 div:hover, .jssorb03 .av
             {
@@ -89,7 +89,7 @@ If user wants to see more detail information about current view, navigation cont
 - When you create variables to store information, outlets in new view is not set yet.
 
 #### Detail
-A navigation controller is a container view controller—that is, **it embeds the content of other view controllers inside of itself**. You access a navigation controller’s view from its view property. This view incorporates: 
+A navigation controller is a container view controller—that is, **it embeds the content of other view controllers inside of itself**. You access a navigation controller’s view from its view property. This view incorporates:
 
 - **navigation bar**
 	- an NSArray of UIBarButtonItems
@@ -101,7 +101,7 @@ A navigation controller is a container view controller—that is, **it embeds th
 	- create your own
 	- by **subclassing either the UIViewController** class or the UITableViewController class
 
-{% img /images/ios/UINavigationController_view_hierarchy.jpg 600 600 UINavigationController view components %}
+![ 600 600 UINavigationController view components ](/images/ios/UINavigationController_view_hierarchy.jpg)
 
 <br>
 ------------
@@ -112,7 +112,7 @@ A navigation controller is a container view controller—that is, **it embeds th
 - often, in Xcode, we use push segue and along with its identifier to connect different MVCs
 - however, you can do this programmatically with `- (void)pushViewControllerAnimated:(BOOL)animated;`
 
-{% img /images/ios/segue.png 600 400 segue %}
+![ 600 400 segue ](/images/ios/segue.png)
 
 #### Take the view off screen
 - often, user hits the back button on the top left of the screen to get back to the parent view
@@ -129,7 +129,7 @@ The segue offers the source VC the opportunity to “prepare” the new VC to co
         if ([segue.destinationViewController isKindOfClass:[DoSomethingVC class]]) {
             DoSomethingVC *doVC = (DoSomethingVC *)segue.destinationViewController;
             	// e.g. doVC.date = getDateFromSomewhere(...);
-				doVC.neededInfo = ...; 
+				doVC.neededInfo = ...;
 		}
 	}
 }
@@ -137,7 +137,7 @@ The segue offers the source VC the opportunity to “prepare” the new VC to co
 
 #### Push, Pop lifecycle
 
-{% img /images/ios/uinavigation_lifecycle.png 600 300 push pop lifecycle %}
+![ 600 300 push pop lifecycle ](/images/ios/uinavigation_lifecycle.png)
 
 <br>
 ------------
