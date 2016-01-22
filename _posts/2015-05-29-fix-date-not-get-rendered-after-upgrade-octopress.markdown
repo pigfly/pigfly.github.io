@@ -5,6 +5,7 @@ date: 2015-05-29 10:05:04 +1000
 comments: true
 header-img: "img/post-bg-05.jpg"
 categories: [octopress, blogging]
+reading_time: "10 mins"
 ---
 
 Recently when I upgrade the octopress I found the date for post isn't properly rendered. Then I decided to sit down to
@@ -13,7 +14,7 @@ me this journey.
 
 <!--more-->
 
-My problem is the date for post doesn't get rendered. ![date missing](/images/octopress/date_missing_in_post.png) <br>
+My problem is the date for post doesn't get rendered. <br>
 And when I inspects the relevant source code it shows the time tag only with something like this `<time datetime="2014-12-30T06:30:00+01:00" pubdate data-updated="true"></time>`. So where is actually date text ?
 
 ------------------------
