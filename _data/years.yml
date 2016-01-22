@@ -1,0 +1,12 @@
+- 2014:
+  - heading: Opened Xcode
+    content:
+    - I worked from the guest room of my renting house (there was no WiFi so I had to connect directly to their modem with ethernet). Armed with cs193p courses from Stanford, I learnt the basics of iOS app structure.
+    - I also had a few reference books and some help from a friend. <a href='http://twitter.com/jasonbrennan'>Jason Brennan</a> and I talked a lot over Google Wave. He helped me with everything from syntax of Objective-C to quirks of Xcode.
+    img_url: img/blog/iOS/xcode.png
+
+  - heading: News Feed
+    content:
+    - "This was to be my first app. I wanted to create something that I would want to use. I really liked using a coffee press but would often forget it was brewing and spoil the coffee. A timer to make coffee would be perfect: simple enough to execute but meaningful enough to motivate me."
+    - "The app was pretty simple: some models were deserialized from NSUserDefaults, presented in a table view, blah blah blah. It wasn't much, but it was mine and I was proud of it. Seeing my software run on my iPod touch for the first time was as close to a religious experience as I've ever had."
+    img_url: 
