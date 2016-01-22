@@ -3,7 +3,7 @@ layout: post
 title: "Fix Date Issue"
 date: 2015-05-29 10:05:04 +1000
 comments: true
-header-img: "img/post-bg-05.jpg"
+header-img: "img/post-bg-08.jpg"
 categories: [octopress, blogging]
 reading_time: "10 mins"
 ---
