@@ -46,7 +46,7 @@ table {
 }
 
 body {
-    font-family: 'PT Sans', sans-serif;
+    font-family: "Avenir Next", "Avenir", 'PT Sans', sans-serif;
     min-height: 740px;
 
     background: rgb(215, 215, 215);
@@ -115,7 +115,7 @@ a:focus {
     -o-box-sizing:      border-box;
     box-sizing:         border-box;
 
-    font-family: 'PT Serif', georgia, serif;
+    font-family: "Avenir Next", "Avenir", 'PT Serif', georgia, serif;
     font-size: 48px;
     line-height: 1.5;
 }
@@ -148,7 +148,7 @@ a:focus {
     color: rgb(102, 102, 102);
     text-shadow: 0 2px 2px rgba(0, 0, 0, .1);
 
-    font-family: 'Open Sans', Arial, sans-serif;
+    font-family: "Avenir Next", "Avenir", 'Open Sans', Arial, sans-serif;
     font-size: 30px;
     line-height: 36px;
     letter-spacing: -1px;
@@ -238,7 +238,7 @@ a:focus {
     transform:         translateY(-10px);
 }
 
-#me.present .unity {
+#me.present .web {
     -webkit-transform: translateY(10px);
     -moz-transform:    translateY(10px);
     -ms-transform:     translateY(10px);
@@ -284,9 +284,10 @@ a:focus {
     width: 600px;
 }
 
-#whereiam .born {
+#whereiam .book {
     text-align: right;
     font-size: 30px;
+    color: #3498db
 }
 
 #whereiam .study {
@@ -294,19 +295,19 @@ a:focus {
     font-size: 30px;
 }
 
-#whereiam .kunming {
-    color: green;
+#whereiam .jiangnan {
+    color: #e74c3c;
 }
 
-#whereiam .tsinghua {
-    color: purple;
+#whereiam .rmit {
+    color: #2ecc71;
 }
 
-#japan {
+#mel {
     width: 650px;
 }
 
-#japan b {
+#mel b {
     display: inline-block;
     -webkit-transition: 0.5s;
     -moz-transition:    0.5s;
@@ -314,8 +315,15 @@ a:focus {
     -o-transition:      0.5s;
     transition:         0.5s;
 }
+.rainbow {
+  background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+  background-image: gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+  color:transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
 
-#japan.present .trans {
+#mel.present .trans {
     -webkit-transform: translateX(100px);
     -moz-transform:    translateX(100px);
     -ms-transform:     translateX(100px);
@@ -329,7 +337,7 @@ a:focus {
     transition-delay:         0.5s;
 }
 
-#japan .footnote {
+#mel .footnote {
     font-size: 15px;
 }
 
@@ -464,7 +472,7 @@ a:focus {
     width: 700px;
     padding-bottom: 400px;
 
-    background-image: url(http://i758.photobucket.com/albums/xx224/onevcat/ou-gi.jpg);
+    background-image: url();
     background-position: bottom right;
     background-repeat: no-repeat;
 }
