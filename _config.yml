@@ -1,0 +1,21 @@
+# Site settings
+title: Alex Jiang
+header-img: img/home-bg.jpg
+email: alex.jiang@outware.com.au
+description: "Web, iOS, Design, Literature"
+baseurl: ""
+url: "http://yourdomain.com"
+timezone: Australia/Victoria
+excerpt_separator: <!--more-->
+
+# social media
+twitter_username:
+github_username:  pigfly
+facebook_username:
+
+# Build settings
+markdown: kramdown
+highlighter: pygments
+permalink: pretty
+paginate: 3
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]

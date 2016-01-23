@@ -1,0 +1,124 @@
+---
+layout: post
+title: "Road To iOS Series 0"
+date: 2014-08-30 18:31:18 +1000
+comments: true
+header-img: "img/post-bg-01.jpg"
+categories: [iOS]
+---
+
+## Dynamic Binding in Objective-C
+
+### What is Dynamic Binding
+Determining the methods of different kinds of objects to invoke at runtime rather than at compile-time.
+
+<!--more-->
+
+### Why we need Dynamic Binding
+1. Since all objects live in the heap, there is no way for compiler to know which object will be created at compile time. In other words, memory for objects will be dynmaically allocated. So we need a mechanism to distinguish various objects and their associated properties, methods etc.
+
+
+2. Dynamic Binding enables polymorphsim. Different objects can have same interface, and by using the interface as a type, invoking methods in different objects. Here is a piece of code showing polymorphsim for objects in Objective-C.
+
+{% highlight objective-c %}
+NSArray *ar = [NSArray arrayWithObjects:car, ship, tiger, nil];
+for (id obj in ar) { [obj run];}
+{% endhighlight %}
+
+### When do we need Dynamic Binding
+1. mix objects of different classes in a collection (e.g. in an NSArray)
+2. support the “blind, structured” communication in MVC (i.e. delegation)
+
+### How Objective-C use dynamic binding for polymorphsim
+The exact code executed, which is at runtime, is determined by:
+
+1. the unique method name(**the selector**)
+2. the object reference being invoked on(**the reference**)
+
+<br>
+----------------
+
+### What is selector
+A unique identifier for a method at runtime
+
+### Why we need selector
+
+1. As mentioned earlier, the selector, and together with invoked object reference enable polymorphsim in objective-c. We can use selector for the above example, the selector could be used with an instance of each of the classes to invoke its run method—even though the implementation might be different for each.
+
+{% highlight objective-c %}
+SEL s = @selector(run);
+[car performSelector:aSelector];
+{% endhighlight %}
+
+2. When your View Controller have target-action pattern, usually we will use selector for invoking methods, rather than just sending message, for the communication from View to Controller is a blind structed way, there is no way for controller to figure out who is the sender until runtime.
+
+{% highlight objective-c %}
+- (void)addTarget:(id)anObject action:(SEL)action ...;
+[button addTarget:self action:@selector(digitPressed:) ...];
+{% endhighlight %}
+
+### A cool selector usage
+{% highlight objective-c %}
+// let objects perform method in NSArray
+[array makeObjectsPerformSelector:shootSelector];
+{% endhighlight %}
+
+<br>
+
+
+## Conclusion
+The selector is usually used for performing polymorphsim behavior, it's part of dynamic binding mechanism in Objective-C.
+
+<br>
+
+
+## Protect ourselves from misusing dynamic binding
+`id` can facilitate polymorphsim, making codes more reusable. However, accidently invoking methods which don't exist in object can cause trouble. There are generally two ways to protect us by:
+
+- **Introspection**
+	- Asking at runtime what class an object is or what messages can be sent to it
+- **Protocols**
+	- Does not specify the class of an object pointed to, but does specify what methods it implements.
+	- A syntax that is “in between” `id` and static typing
+
+### Introspection
+It's really about dependency checking...
+{% highlight objective-c %}
+// get class by sending class message to class
+// in this case, we send class message to NSString to check if obj inherents from NSString
+if ([obj isKindOfClass:[NSString class]]) {
+	// if obj is subclass is NSString, we can safely cast
+    NSString *s = [(NSString *)obj stringByAppendingString:@”xyzzy”];
+}
+{% endhighlight %}
+
+Sometimes, we also want to make sure some classes indeed hold methods we want to invoke...
+{% highlight objective-c %}
+// respondsToSelector: returns whether an object responds to a given method
+if ([obj respondsToSelector:@selector(shoot)]) {
+    [obj shoot];
+} else if ([obj respondsToSelector:@selector(shootAt:)]) {
+    [obj shootAt:target];
+}
+{% endhighlight %}
+
+#### A picture showing introspection life cycle
+![ introspection ](/images/ios/introspection.png)
+
+[image source](https://developer.apple.com/library/mac/navigation/)
+
+<br>
+
+## Conclusion
+Using polymorphsim with `id` greatly make codes more reusable, also, we can do dependency and method checking by using introspection.
+
+## Mindmap for dynamic binding
+![ Dynamic Binding Mindmap ](/images/ios/dynamic-binding.png)
+
+<br>
+-------------
+
+### Reference
+1. Stanford iOS 7 development
+2. [Mac Developer Library](https://developer.apple.com/library/mac/navigation/)
+3. [Beginning iOS 7 Development](http://www.apress.com/9781430260226)

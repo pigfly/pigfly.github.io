@@ -1,0 +1,120 @@
+---
+layout: post
+title: "Perl Cheatsheet 1"
+date: 2014-08-30 02:57:10 +1000
+comments: true
+header-img: "img/post-bg-05.jpg"
+categories:  [perl]
+---
+
+## Perl w1
+
+- a little thought on Perl
+	- make sure you **know the *context*** when writing perl program
+	- make sure you understand **which type of var** you are using
+		- scalar always start with `$`
+		- list always start with `@`
+		- dict always start with `%`
+
+<!--more-->
+-------------
+
+### I/O
+
+- input from stdin, one line at a time: `while (<STDIN>) {…}`, this is a shorthand for `while (defined(<STDIN>) )`
+- input from a handler, store each line as one element in a array, `my @ar = <file>`
+- input from command-line argument. `while (<>) {…}` e.g. `./read.pl file1 file2 …` will get input from file1, then file2, then…
+- special symbol: all arguments from command-line stores in `@ARGV`, a special array.
+- get the output from external unix command: `open my $file, "ls -al |"` open a pipe
+- send the handler to external unix command: `open $file, "| lpr"`
+- **Idiom**
+	- read file word by word
+		- read entire file as string `use File::Slurp;`
+		- read entire file as string `my $file = read_file($ARGV[0])`
+		- split the string into words `my @words = split /[ \t\r\n]+/, $file`
+		- iterate thru `for (@words) …`
+	- read file char by char
+		- read entire file as string use `File::Slurp`
+		- split the string into characters `my @chars = split //, $file`
+		- iterate thru `for (@chars) …`
+		- more efficient you can split char line by line
+			- `while <$file> {@chars = split //}`
+
+
+#### File handles
+
+---------
+
+- Filehandler is actually a pointer
+
+- three default file handlers: `STDIN STDOUT STDERR`
+
+- the `open` tells Perl to ask os to open connection between your program and the outside world
+- `open` can open any connection to real world, e.g. socket, process, file, pipe...
+	- meaning, if you want to input from other text file rather than `STDIN`, use `open HANDLERNAME, "<", "textfile"` first, then treat HANDLERNAME just as normal stdin.
+	- meaning, if you want to output to other text file rancher than `STDOUT`, use `open HANDLER, ">", "textfile" ` first, then treat HANDLER just as STDOUT.
+	- e.g. `open IN, "<", "textfile"; for (@IN) {…}` read from file
+	- e.g. `open OUT, ">", "textfile"; select OUT; print…;` write to file
+	- e.g. `open OUT, ">", "textfile"; print OUT, "…";` write to file just use print
+	- `open` will return true if successfully opened, otherwise false
+
+- special symbol: `$!` print the essential information about system error. e.g. `print "bad, $!"`
+	- **Bad FileHandle**: `my $ok = open LOG, ">>", "log.txt"; if(!ok) {…}`
+
+
+#### Subroutine
+
+-----------
+
+- invoke: `&name(parameter1, parameter2,…)`: e.g. `$n = &max(1,2)`
+
+- **mutable parameters**, all vars get passed into sub are reference, meaning all mutable !
+
+- special symbol: `@_`, all parameters passed into subroutine stored in special array `@_`, you can retrieve any value like normal. e.g. `$_[0]`
+	- **important**: these `$_[2]` values has nothing to do with `$_`, don't get confused.
+	- give name to default parameters: `($name1, $name2) = ($_[0], $_[1])` or `($name1, $name2, $name3…) = @_`
+
+- return value: **last expression evaluated** will be return value!
+	- the `return` keyword isn't really necessary, for simplicity, you can omit, because always the last expression gets evaluated return its value
+
+- prototype: `sub add($$)` tell perl this sub need exactly two scalar. `sub divide($@)` tell perl this sub need exactly one scalar and one array
+
+#### Hash
+
+------------
+
+- a little thought on Perl
+	- make sure you **know the *context*** when writing perl program
+	- make sure you understand **which type of var** you are using
+		- scalar always start with `$`
+		- list always start with `@`
+		- dict always start with `%`
+
+- what is dict
+	- key-value pair.
+	- key: must be string.
+	- value: must be scalar var.
+	- **random access, no order guarantee !**
+
+- dict assignment
+	- `my %dict; $dict{"s344"} = "alex";`
+	- `my %dict = qw(s344 alex s345 pcy);`
+	- `my %dict = ("s344", 2, "s355", 1);`
+	- `my %dict = ("s344"=>2, "s444"=>1);`
+	- the `%dict` accepts a list, and convert elements to key-value pair, the example above may be converted like *"(key,value,key,value)"*
+
+- dict as a whole
+	- `my %dict; %rev = reverse %dict;` will get *"(value=>key)"* pairs
+	- `@list = %dict; print "@list"` will print a *"(key, value)"* list
+
+- dict operation
+	- `keys`: yield a list of all keys in hash. `my @k = keys %dict;`
+	- `values`: yield a list of all values in hash. `my @v = values %dict;`
+	- iterate thru
+		- `each`: return next key-value pair. ` while( my($k, $v) = each %hash ) {…}` *more efficient*
+		- `for (keys %dict) { my $v = $dict{$_} …}` *less efficient*
+		- you should not delete a key out of a hash (or add keys) while iterating over it using each(), because this may confuse Perl: instead, **creating a new flittered array or hash with push() or dict assignment while iterated thru** [SRC](http://perl-begin.org/tutorials/bad-elements/#modifying_iterated_array)
+	- delete key
+		- delete: `delete $books{$person}` delete key-value pair, tricky is the return value is that key!
+	- tips: `my $count = keys %dict;` return # of keys !
+	- tips: `print %dict` will print content of hash in an array.    
