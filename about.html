@@ -1,8 +1,108 @@
 ---
-layout: page
+layout: about
 title: "About"
 description: "About"
-header-img: "img/about-bg.jpg"
 ---
 
-<p> Under construction </p>
+<div id="impress">
+
+    <div id="welcome" class="step" data-x="-2000" data-y="-2500">
+        <p>Welcome to </p>
+        <p><span class="title"><b>Alex's Space</b></span></p>
+        <p><span class="footnote"><sup>*</sup>I'm <span class="name">Alex Jiang</span>，This is my space</span></p>
+    </div>
+
+    <div id="me" class="step" data-x="0" data-y="-2500">
+        <b class="now_me">I'm an ：</b>
+        <ul>
+            <li><b class="ios">iOS Dev</b></li>
+            <li><b class="web">Full Stack Web Dev</b></li>
+            <li><b class="photo">Amateur Photographer</b></li>
+        </ul>
+    </div>
+
+    <div id="whereiam" class="step" data-x="850" data-y="3000" data-rotate="90" data-scale="3">
+        <p>Born in<span class="jiangnan"> China</span></p>
+        <p>Loved &#8810<span class="book">The Walden</span>&#8811</p>
+        <p>Study in <span class="rmit">RMIT</span></p>
+    </div>
+
+    <div id="mel" class="step" data-x="3500" data-y="2100" data-rotate="180" data-scale="4">
+        <p>Travel and live in<b class="trans rainbow">Melbourne</b><p>
+        <p>Experiecing meaning of life<sup>*</sup>meanwhile, seek for the spring of inspiration.<sup>**</sup></p>
+        <p><span class="footnote">* actually it's just work，** no more than chatting</span></p>
+    </div>
+
+    <div id="world" class="step" data-x="-100" data-y="2900"  data-z="900" data-rotate="-90" data-scale="5">
+        <p>Somethimes, I feel the world is beneath my feet</p>
+    </div>
+
+    <div id="meet" class="step" data-x="1300" data-y="6000" data-z="2400" data-scale="6">
+        <p>Maybe at some point or somewhere</p>
+        <p>You smiled and talked to me of nothing</p>
+    </div>
+
+    <div id="tiny" class="step" data-x="1300" data-y="6000" data-z="-3000" data-rotate="300" data-scale="1">
+        <p>However</p>
+    </div>
+
+    <div id="comein" class="step" data-x="0" data-y="7000" data-z="-3000" data-rotate="300">
+        <p>When you start to enter <a href="http://pigfly.io">Alex's Space</a></p>
+        <p>We start to share something in <b>common</b></p>
+    </div>
+
+    <div id="mywords" class="step" data-x="4500" data-y="3500" data-z="3000" data-rotate="160">
+        <p>Maybe what you can see here is</p>
+        <p>Some stupid thoughts and posts</p>
+    </div>
+
+    <div id="grow" class="step" data-x="3500" data-y="-850" data-z="3000" data-rotate="270" data-scale="6">
+        <p>But it records every moment of my little life </p>
+        <p><b>My Feelings，My Stories</b></p>
+    </div>
+
+    <div id="knowme" class="step" data-x="-6000" data-y="-800" data-z="0" data-rotate="0" data-scale="1">
+        <p>As if</p>
+        <p>I feel the silence of your great thoughts</p>
+    </div>
+
+    <div id="prizeme" class="step" data-x="-6000" data-y="-500" data-z="-500" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
+        <p><span class="horse">良驹美景，</span> <span class="moutain">高山流水，</span> <span class="hope">我真心希望</span> <span class="youare">您就是</span> <span class="my">我的伯乐，我的子期</span> <b></p>
+    </div>
+
+    <div id="one-more-thing" class="step" data-x="-1500" data-y="-1100" data-z="0" data-scale="2">
+        <p>One More Thing</p>
+    </div>
+
+    <div id="motto" class="step" data-x="0" data-y="1500" data-z= "6000" data-scale="5">
+        <p>No matter where you are, what you do</p>
+        <p>Please do remember</p>
+        <p><b>上善若水，人淡如菊</b></p>
+        <p><b>The highest good is like water，being pure in heart and mind</b></p>
+    </div>
+
+    <div id="back" class="step" data-x="-6000" data-y="5200" data-scale="2">
+        <p>Thanks for visiting</p>
+        <p>Hit <a href="http://pigfly.github.io/">here</a>to go back to Home</p>
+    </div>
+
+    <div id="overview" class="step" data-x="0" data-y="2500" data-scale="16">
+    </div>
+
+</div>
+
+<div class="hint">
+    <p>Use space or arrow keys to continue</p>
+</div>
+
+<script>
+if ("ontouchstart" in document.documentElement) {
+    document.querySelector(".hint").innerHTML = "<p>Click on the left or right to continue</p>";
+}
+</script>
+
+<!-- Impressive JS -->
+<script src="//netdna.impressjscdn.com/impressjs/0.5.3/js/impress.js"></script>
+
+<!-- init impress js -->
+<script>impress().init();</script>
