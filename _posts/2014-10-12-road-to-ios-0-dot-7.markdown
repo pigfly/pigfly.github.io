@@ -7,26 +7,26 @@ header-img: "img/post-bg-05.jpg"
 categories: [ios]
 ---
 
-# View Controllers
+View Controller Essentials :
 
-## View Controller Essentials
-- An instance of a subclass of **UIViewController**
-- It manages a **view hierarchy**
+- An instance of a subclass of UIViewController
+- It manages a view hierarchy
 - It's responsible for creating view objects, handling events
 
 <!--more-->
 
-## View in View Controller
-- An important property **view**
-- It's the **root** of view controller's view hierarchy
+View in View Controller :
+
+- It's the *root* of view controller's view hierarchy
 - Two ways of creating its view hierarchy :
-	- Programmatically, override the **UIViewController** method **loadView**
+	- Programmatically, override the UIViewController method loadView
 	- Interface Builder, loading a NIB file
 
-### Create view programmatically
-In your own view controller class(which can be created by inheriting **UIViewController**), override the **loadview**:
+Create view programmatically :
 
-``` objective-c create view in view controller's loadView method
+In your own view controller class(which can be created by inheriting UIViewController), override the loadview:
+
+{% highlight objective-c %}
 - (void)loadView
 {
 	// 1. specify the view's frame
@@ -45,13 +45,13 @@ In your own view controller class(which can be created by inheriting **UIViewCon
 	// e.g. [firstView addSubview: secondView];
 	self.view = firstView;
 }
-```
+{% endhighlight %}
 
 However, the code above is for creating view hierarchy in view controller only,
 it has nothing to do with the actual view appeared on the screen. To connect a
-view in view controller with screen, you need to use **UIwindow**'s **setRootViewController**.
+view in view controller with screen, you need to use UIwindow's setRootViewController.
 
-``` objective-c set root view controller in appDelegate.m
+{% highlight objective-c %}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -66,16 +66,17 @@ view in view controller with screen, you need to use **UIwindow**'s **setRootVie
 	[self.window makeKeyAndVisible];
 	return YES;
 }
-```
+{% endhighlight %}
 
-### Create view use XIB
+Create view use XIB :
+
 - Steps for creating view for view controller using XIB:
 	- create a view using interface builder(i.e. create xib file)
 	- create your view controller for this xib
-	- **make sure your xib's name is named the same as your view controller** (xcode uses this to automatically load nib file i.e. init the view)
-	- **connect** your controller to your xib(e.g. File's owner, IBOutlet, IBAction)
+	- make sure your xib's name is named the same as your view controller (xcode uses this to automatically load nib file i.e. init the view)
+	- connect your controller to your xib(e.g. File's owner, IBOutlet, IBAction)
 
-``` objective-c create view controller according to your xib file
+{% highlight objective-c %}
 @interface YourOwnViewController ()
 
 // IBOutlet is typedef as void, it's only for xcode to identify the specific element in xib
@@ -90,7 +91,7 @@ view in view controller with screen, you need to use **UIwindow**'s **setRootVie
     NSDate *date = self.datePicker.date;
     NSLog(@"Setting a reminder for %@", date);
 }
-```
+{% endhighlight %}
 
 After you get your xib and view controller done, you may now **connect these two together**.
 
@@ -99,22 +100,21 @@ After you get your xib and view controller done, you may now **connect these two
 - Connect outlet and actions
 	- right click on File's Owner, drag-and-drop those connections between your controller and xib
 
-<br>
 ------------
 
-## UIViewController Initializer
-- Designated Initializer: **initWithName:bundle:**
-- Simply call **alloc** and **init**
-- Sending **init** to a view controller calls **initWithName:bundle:** and passes *nil* for both arguments
-- **When a view controller is initialized with *nil* as its NIB name, it searches for a NIB file with the name of the class**
+UIViewController Initializer :
 
-<br>
+- Designated Initializer: `initWithName:bundle:`
+- Simply call alloc and init
+- Sending init to a view controller calls initWithName:bundle: and passes nil for both arguments
+- When a view controller is initialized with *nil* as its NIB name, it searches for a NIB file with the name of the class
+
 ------------
 
-## UIViewController Lifecycle
+UIViewController Lifecycle :
+
 See previous post for more details: [View Controller Lifecycle](http://pigfly.github.io/blog/2014/09/01/road-to-ios-0-dot-2/)
 
-<br>
 ------------
 
 ### Reference
