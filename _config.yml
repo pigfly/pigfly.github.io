@@ -4,7 +4,7 @@ header-img: img/home-bg.jpg
 email: alex.jiang@outware.com.au
 description: "Web, iOS, Design, Literature"
 baseurl: ""
-url: "http://yourdomain.com"
+url: "https://pigfly.github.io"
 timezone: Australia/Victoria
 excerpt_separator: <!--more-->
 
