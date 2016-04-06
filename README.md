@@ -1,7 +1,7 @@
 My Blog
 =======
 
-My [blog](https://pigfly.github.io/).
+My [blog](http://pigfly.github.io/).
 
 Setup
 -----
