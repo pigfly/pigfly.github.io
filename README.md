@@ -1,7 +1,7 @@
 My Blog
 =======
 
-My [blog](http://pigfly.github.io/).
+My [blog](https://pigfly.github.io/).
 
 Setup
 -----
@@ -25,7 +25,7 @@ License
 
 [![Creative Commons License](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)
 
-This work by [Alex Jiang](http://pigfly.io) is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
+This work by [Alex Jiang](https://pigfly.github.io) is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
 
 Code I've written is [licensed](/LICENSE) under MIT. Other components such as [Bootstrap](http://getbootstrap.com) have their own licenses.
 
