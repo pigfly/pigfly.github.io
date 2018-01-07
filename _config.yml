@@ -1,7 +1,7 @@
 # Site settings
 title: Alex Jiang
 header-img: img/home-bg.jpg
-email: alex.jiang@sportsbet.com.au
+email: alex.jiang@carsales.com.au
 description: "Web, iOS, Design, Literature"
 baseurl: ""
 url: "https://pigfly.github.io"
@@ -21,4 +21,4 @@ paginate: 3
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 
 # Gems
-gems: [jekyll-paginate, pygments.rb, jekyll-gist, less, therubyracer, rouge]
+plugins: [jekyll-paginate, jekyll-gist]
