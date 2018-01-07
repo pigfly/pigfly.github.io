@@ -15,10 +15,10 @@ facebook_username:
 
 # Build settings
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 permalink: pretty
 paginate: 3
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 
 # Gems
-plugins: [jekyll-paginate]
+plugins: [jekyll-paginate, jekyll-gist]
