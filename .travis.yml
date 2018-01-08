@@ -1,8 +1,13 @@
 language: ruby
 sudo: true
+cache: bundler
 rvm:
 - 2.4.0
 before_install:
 - gem install jekyll
 - gem install bundler
 - bundle install
+before_script:
+- chmod +x ./script/cibuild.sh
+script: ./script/cibuild.sh
+exclude: [vendor]
