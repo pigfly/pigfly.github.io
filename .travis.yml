@@ -4,6 +4,6 @@ cache:
 - bundler
 - pip
 rvm:
-- 2.1.2
+- 2.4.0
 before_install:
 - gem install jekyll
