@@ -11,3 +11,4 @@ gem 'jekyll-paginate', group: :jekyll_plugins
 gem 'jekyll-gist'
 gem 'less'
 gem 'therubyracer'
+gem 'rake'
