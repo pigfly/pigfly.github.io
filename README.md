@@ -3,6 +3,10 @@ My Blog
 
 My [blog](https://pigfly.github.io/).
 
+[![Travis](https://img.shields.io/travis/rust-lang/rust.svg?style=flat-square)](https://travis-ci.org/pigfly/pigfly.github.io.svg?branch=master)
+[![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg?label=my-website)](https://pigfly.github.io)
+
+
 Setup
 -----
 
