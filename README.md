@@ -3,8 +3,10 @@ My Blog
 
 My [blog](https://pigfly.github.io/).
 
-[![Travis](https://img.shields.io/travis/rust-lang/rust.svg?style=flat-square)](https://travis-ci.org/pigfly/pigfly.github.io.svg?branch=master)
-[![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg?label=my-website)](https://pigfly.github.io)
+[![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://travis-ci.org/pigfly/pigfly.github.io.svg?branch=master)
+[![Ruby](https://img.shields.io/badge/ruby-2.4.0-orange.svg)](https://www.ruby-lang.org/en/downloads/)
+[![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg?label=pigfly.github.io)](https://pigfly.github.io)
+[![Plugin on redmine.org](https://img.shields.io/redmine/plugin/stars/redmine_xlsx_format_issue_exporter.svg)](https://pigfly.github.io)
 
 
 Setup
@@ -15,6 +17,9 @@ Note this project is built on top of [Jekyll](https://jekyllrb.com/), please see
 ```shell
 git clone https://github.com/pigfly/pigfly.github.io.git
 cd pigfly.github.io
+gem install jekyll
+gem install bundler
+bundle install
 jekyll serve --watch
 ```
 
