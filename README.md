@@ -41,6 +41,8 @@ Code I've written is [licensed](/LICENSE) under MIT. Other components such as [B
 Thanks
 ------
 
+Special thanks to [iT Man](https://itman.design), who continue to provide high quality computing environment for free.
+
 Thanks to the following people and projects:
 
 - [loadCSS](https://github.com/filamentgroup/loadCSS)
