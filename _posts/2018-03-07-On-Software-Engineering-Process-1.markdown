@@ -1,0 +1,87 @@
+---
+layout: post
+title: "On Software Engineering Process 1"
+date: 2018-03-07 23:39:49 +1000
+comments: true
+header-img: "img/post-bg-07.jpg"
+categories: [software-engineering, software-design]
+reading_time: "15 mins"
+---
+
+This series is the reflection and study when I was leading an engineering team for all the aspects of software development.
+
+<!--more-->
+
+As I spend most of time in the financial sector, seeing how those giants trying best to turn the ship from "waterfall" process into "agile" way, and some of these eventually developed own ways of working.
+However, these is one crucial pattern that is in common for these financial groups: **risk-averse**. 
+
+More often than not, I often saw people doing the risk-driven development without actually realising.
+
+## Risk-driven development
+
+> Risk = Probability of (failure) * Cost of (failure) 
+
+what do people usually deal with failures ?
+
+- list failures & determine their risks
+- devise a strategy to reduce highest risks
+
+What I haven seen some good examples of failures ?
+
+- performance is unacceptable
+- product is unusable because its too complex
+- customer changes mind about what product does
+- developer solves the wrong problem
+- product fails in catastrophic way
+- competitor beats you into marketplace
+- product has reputation for bugs
+- development runs out of time and money
+- developers rely on platform that turns out bad 
+
+First let's focus on the subcategory of all these failures: the engineering part, to write good specifications.
+
+### Specification (a.k.a. Design Docs)
+
+Most of the annoying bugs in our codebase arise due to misunderstandings about the behavior or intention between two pieces
+of code. However, every engineer has specifications in mind, only few write them down. That leads to a very awkward position,
+different engineers on the same team have *different* specifications in mind. When the code breaks, it's hard to determine
+where the error is.
+
+What makes this worse is, most of managers are blind to see the benefits of precise specifications in the code or in a form of documentation,
+namely, to let you blame (to code fragments, not people!), and can spare you the pain of randomly try-and-error where a fix should go.
+
+If you’re not convinced that reading a spec is easier than reading code, take a look at some of the standard Java specs and compare them to the source code that implements them.
+
+| add                 |
+|---------------------|
+| `public BigInteger add(BigInteger val)` |
+| Returns a BigInteger whose value is `(this + val)`    |
+| **Parameters:** |
+| `val` - value to be added to this BigInteger. |
+| **Return:** |
+| `this + val` |
+
+Here is the source code from Java 8:
+
+```java
+if (val.signum == 0)
+    return this;
+if (signum == 0)
+    return val;
+if (val.signum == signum)
+    return new BigInteger(add(mag, val.mag), signum);
+
+int cmp = compareMagnitude(val);
+if (cmp == 0)
+    return ZERO;
+int[] resultMag = (cmp > 0 ? subtract(mag, val.mag)
+                   : subtract(val.mag, mag));
+resultMag = trustedStripLeadingZeroInts(resultMag);
+
+return new BigInteger(resultMag, cmp == signum ? 1 : -1);
+```
+
+The spec for `BigInteger.add` is straightforward for clients to understand, and if we have questions about corner cases, 
+the BigInteger class provides additional human-readable documentation. If all we had was the code, 
+we’d have to read through the `BigInteger` constructor, `compare­Magnitude` , `subtract` , and `trusted­StripLeadingZero­Ints` just as a starting point.
+
