@@ -8,20 +8,20 @@ categories: [software-engineering, software-design]
 reading_time: "15 mins"
 ---
 
-This series is the reflection and study when I was leading an engineering team for all the aspects of software development.
+These series are the reflection and study when I was leading an engineering team for all the aspects of software development.
 
 <!--more-->
 
 As I spend most of time in the financial sector, seeing how those giants trying best to turn the ship from "waterfall" process into "agile" way, and some of these eventually developed own ways of working.
 However, these is one crucial pattern that is in common for these financial groups: **risk-averse**. 
 
-More often than not, I often saw people doing the risk-driven development without actually realising.
+More often than not, I often saw people doing the risk-driven development without actually realising it.
 
 ## Risk-driven development
 
 > Risk = Probability of (failure) * Cost of (failure) 
 
-what do people usually deal with failures ?
+what do people usually do when dealing with failures ?
 
 - list failures & determine their risks
 - devise a strategy to reduce highest risks
@@ -38,7 +38,8 @@ What I haven seen some good examples of failures ?
 - development runs out of time and money
 - developers rely on platform that turns out bad 
 
-First let's focus on the subcategory of all these failures: the engineering part, to write good specifications.
+First let's focus on the subcategory of all these failures that would be ignored most of the time: 
+the engineering part, to write good specifications.
 
 ### Specification (a.k.a. Design Docs)
 
@@ -81,7 +82,64 @@ resultMag = trustedStripLeadingZeroInts(resultMag);
 return new BigInteger(resultMag, cmp == signum ? 1 : -1);
 ```
 
-The spec for `BigInteger.add` is straightforward for clients to understand, and if we have questions about corner cases, 
-the BigInteger class provides additional human-readable documentation. If all we had was the code, 
+The spec for `BigInteger.add` is straightforward for caller to understand, and if we have questions about corner cases, 
+the `BigInteger` class provides additional human-readable documentation. If all we had was the code, 
 we’d have to read through the `BigInteger` constructor, `compare­Magnitude` , `subtract` , and `trusted­StripLeadingZero­Ints` just as a starting point.
 
+
+#### Code behaviors the same
+
+Consider these two functions. Are they talking about the same thing ?
+
+```java
+static int findFirst(int[] arr, int val) {
+    for (int i = 0; i < arr.length; i++) {
+        if (arr[i] == val) return i;
+    }
+    return arr.length;
+}
+
+static int findLast(int[] arr, int val) {
+    for (int i = arr.length -1 ; i >= 0; i--) {
+        if (arr[i] == val) return i;
+    }
+    return -1;
+}
+```
+
+The answer is obviously no.
+Not only do these functions have different code, they indeed have different behaviors:
+
+- when `val` is missing, `findFirst` returns the length of `arr` and `findLast` returns -1
+- when `val` appears twice, `findFirst` returns the lower index and `findLast` returns the higher
+ 
+What does this tell us ?
+
+The notion of two code snippets behavior the same is *depending on the caller*:
+
+- when `val` occurs at exactly one index of the array, the two methods behave the same
+    
+So in order to refactor these two code snippet into one, or substitute one implementation for another, and to know when this is
+acceptable, we need our specification to include what the caller depends on.
+
+In that case, our specification might be like:
+
+```java
+static int find(int[] arr, int val)
+  requires: val occurs exactly once in arr
+  effects:  returns index i such that arr[i] = val
+```
+
+
+#### Specification structure
+
+A specification of a function consists of several clauses:
+
+- a *precondition* , indicated by the keyword `requires`
+- a *postcondition* , indicated by the keyword `effects`
+    
+The precondition is an obligation on the caller. It’s a condition over the state in which the method is invoked.
+
+The postcondition is an obligation on the implementer of the method. If the precondition holds for the invoking state, 
+the method is obliged to obey the postcondition, by returning appropriate values, throwing specified exceptions, 
+modifying or not modifying objects, and so on.
