@@ -107,15 +107,17 @@ static int findLast(int[] arr, int val) {
 }
 ```
 
-The answer is obviously yes.
+The answer is obviously no.
 Not only do these functions have different code, they indeed have different behaviors:
-    - when `val` is missing, `findFirst` returns the length of `arr` and `findLast` returns -1
-    - when `val` appears twice, `findFirst` returns the lower index and `findLast` returns the higher
+
+- when `val` is missing, `findFirst` returns the length of `arr` and `findLast` returns -1
+- when `val` appears twice, `findFirst` returns the lower index and `findLast` returns the higher
  
 What does this tell us ?
 
 The notion of two code snippets behavior the same is *depending on the caller*:
-    - when `val` occurs at exactly one index of the array, the two methods behave the same
+
+- when `val` occurs at exactly one index of the array, the two methods behave the same
     
 So in order to refactor these two code snippet into one, or substitute one implementation for another, and to know when this is
 acceptable, we need our specification to include what the caller depends on.
@@ -128,11 +130,13 @@ static int find(int[] arr, int val)
   effects:  returns index i such that arr[i] = val
 ```
 
+
 #### Specification structure
 
 A specification of a function consists of several clauses:
-    - a *precondition* , indicated by the keyword `requires`
-    - a *postcondition* , indicated by the keyword `effects`
+
+- a *precondition* , indicated by the keyword `requires`
+- a *postcondition* , indicated by the keyword `effects`
     
 The precondition is an obligation on the caller. It’s a condition over the state in which the method is invoked.
 
