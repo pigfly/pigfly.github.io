@@ -91,17 +91,17 @@ we’d have to read through the `BigInteger` constructor, `compare­Magnitude` ,
 
 Consider these two functions. Are they talking about the same thing ?
 
-```java
-static int findFirst(int[] arr, int val) {
-    for (int i = 0; i < arr.length; i++) {
-        if (arr[i] == val) return i;
+```swift
+static func findFirst(arr: [Int], val: Int) -> Int {
+    for (i, n) in arr.enumerated() where n == val {
+        return i
     }
-    return arr.length;
+    return arr.length
 }
 
-static int findLast(int[] arr, int val) {
-    for (int i = arr.length -1 ; i >= 0; i--) {
-        if (arr[i] == val) return i;
+static func findLast(arr: [Int], val: Int) -> Int {
+    for (i, n) in arr.reversed().enumerated() where n == val {
+        return i
     }
     return -1;
 }
@@ -143,3 +143,35 @@ The precondition is an obligation on the caller. It’s a condition over the sta
 The postcondition is an obligation on the implementer of the method. If the precondition holds for the invoking state, 
 the method is obliged to obey the postcondition, by returning appropriate values, throwing specified exceptions, 
 modifying or not modifying objects, and so on.
+
+
+#### Specification in Swift
+
+Some languages (e.g. [Eiffel](https://en.wikipedia.org/wiki/Eiffel_(programming_language)) ) put preconditions and postconditions as a fundamental part of the language, 
+as expressions that the runtime system (or even the compiler) can automatically check to enforce the contracts between clients and implementers.
+
+Swift does not go quite so far, although [precondition](https://developer.apple.com/documentation/swift/1540960-precondition) in Swift can
+make necessary condition check for forward progress, it turns out to be an *non-recoverable* failure. So we need to put these specification
+as part of comments and rely on human beings to check and guarantee it.
+
+Fortunately, Swift has a [Markup](https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_markup_formatting_ref/index.html) 
+format for documentation. So we could put preconditions into `Parameters`, and postconditions into `Returns` and `Throws`.
+So a specification like this:
+
+```swift
+static func find(arr: [Int], val: Int) -> Int
+  requires: val occurs exactly once in arr
+  effects:  returns index i such that arr[i] = val
+```
+
+might be translated in Swift like this:
+
+```swift
+    /// Find a value in an array
+    ///
+    /// - Parameters:
+    ///   - arr: array to search, requires that val occurs exactly once in arr
+    ///   - val: value to search for
+    /// - Returns: index i such that arr[i] = val
+    static func find(arr: [Int], val: Int) -> Int
+```
