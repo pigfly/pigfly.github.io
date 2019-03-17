@@ -81,3 +81,30 @@ Now there’s no need for any special value, nor the checking associated with it
 The rule we have given — use exceptions for special results (i.e., anticipated situations), and to signal bugs 
 (unexpected failures)— makes sense, but it isn’t the end of the story.
 
+If you design a method to have its own (new) exception, you have to create a new class for the exception. 
+If you call a method that can throw a exception, you have to wrap it in a `try - catch` statement (even if you know the exception will never be thrown). 
+This latter stipulation creates a dilemma. 
+
+Suppose, for example, you’re designing a queue abstraction. 
+
+> Should popping the queue throw a checked exception when the queue is empty?
+
+Suppose you want to support a style of programming in the caller in which the queue is popped until the exception is thrown. 
+So you choose to throw exception. 
+
+Now some caller wants to use the method in a context in which, immediately prior to popping, 
+the caller tests whether the queue is empty and only pops if it isn’t. Maddeningly, that caller will still need to wrap the call in a `try - catch`statement.
+
+This suggests a more refined rule:
+
+- You should use an exception only to signal an unexpected failure (i.e. a bug), or if you expect that caller will usually 
+write code that ensures the exception will not happen, because there is a convenient and inexpensive way to avoid the exception;
+- Otherwise you should use a exception.
+
+Here are some examples of applying this rule to hypothetical methods:
+
+- `Queue.pop()` should **not** throws an `Empty­Queue­Exception` when the queue is empty, because it’s reasonable to expect the caller to 
+avoid this with a call like `Queue.size()` or `Queue.isEmpty()`.
+- `Url.getWebPage()` throws a `IOException` when it can’t retrieve the web page, because it’s not easy for the caller to prevent this.
+- `integerSquareRoot(int x) -> Int` should throws `Not­Perfect­Square­Exception` when x has no integral square root, 
+because testing whether x is a perfect square is just as hard as finding the actual square root, so it’s not reasonable to expect the caller to prevent it.
