@@ -9,10 +9,12 @@ reading_time: "15 mins"
 ---
 
 These series are the reflection and study when I was leading an engineering team for all the aspects of software development.
+In particular, this post covers how to write better specification for your code.
 
 <!--more-->
 
-As I spend most of time in the financial sector, seeing how those giants trying best to turn the ship from "waterfall" process into "agile" way, and some of these eventually developed own ways of working.
+As I spend most of time in the financial sector, seeing how those giants trying best to turn the ship from "waterfall" 
+process into "agile" way, and some of these eventually developed own ways of working.
 However, these is one crucial pattern that is in common for these financial groups: **risk-averse**. 
 
 More often than not, I often saw people doing the risk-driven development without actually realising it.
@@ -148,7 +150,7 @@ modifying or not modifying objects, and so on.
 #### Specification in Swift
 
 Some languages (e.g. [Eiffel](https://en.wikipedia.org/wiki/Eiffel_(programming_language)) ) put preconditions and postconditions as a fundamental part of the language, 
-as expressions that the runtime system (or even the compiler) can automatically check to enforce the contracts between clients and implementers.
+as expressions that the runtime system (or even the compiler) can automatically check to enforce the contracts between caller and implementers.
 
 Swift does not go quite so far, although [precondition](https://developer.apple.com/documentation/swift/1540960-precondition) in Swift can
 make necessary condition check for forward progress, it turns out to be an *non-recoverable* failure. So we need to put these specification
