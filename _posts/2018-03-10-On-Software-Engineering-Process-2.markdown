@@ -27,8 +27,9 @@ An unfortunately common way to handle special results is to return special value
 
 For example, lookup operations in the Java library are often designed like this: you get an index of -1 when expecting a positive integer, 
 or a null reference when expecting an object. This approach is OK if used sparingly, but it has two problems. 
-First, it’s tedious to check the return value. 
-Second, it’s easy to forget to do it. (We’ll see that by using exceptions you can get help from the compiler in this.)
+
+- First, it’s tedious to check the return value. 
+- Second, it’s easy to forget to do it. (We’ll see that by using exceptions you can get help from the compiler in this.)
 
 Also, it’s not always easy to find a ‘special value’. Suppose we have a Facebook class with a lookup method. 
 Here’s one possible method signature:
@@ -87,7 +88,7 @@ This latter stipulation creates a dilemma.
 
 Suppose, for example, you’re designing a queue abstraction. 
 
-> Should popping the queue throw a checked exception when the queue is empty?
+> Should popping the queue throw exception when the queue is empty?
 
 Suppose you want to support a style of programming in the caller in which the queue is popped until the exception is thrown. 
 So you choose to throw exception. 
