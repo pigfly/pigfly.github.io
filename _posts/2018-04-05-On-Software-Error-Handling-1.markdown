@@ -90,7 +90,7 @@ Since we marked the above function with throws, we’re now required to prefix a
 which in turn forces us to handle any errors thrown from it (or to convert its return value into an optional using `try?`).
 
 For example, here we’re using our function to get user information on the button clicked, 
-if the validation passed (no error was thrown), then we’ll continue by submitting that username to our server 
+if the validation passed (no error was thrown), then we’ll continue by submitting that username to local storage service. 
 — otherwise, we display the error that was encountered using a UILabel:
 
 ```swift
