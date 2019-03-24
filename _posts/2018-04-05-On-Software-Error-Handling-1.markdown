@@ -64,7 +64,7 @@ Using the above error enum, we’ll mark our function as being able to throw err
 and use the `throw` keyword to trigger an error in case a validation requirement doesn't meet — like this:
 
 ```swift
-func getUserInfo(with credentials: Credentials) throws -> User? {
+func getUserInfo(with credentials: Credentials) throws -> User {
     guard credentials.username.count >= 4 else {
         throw ValidationError.lengthTooShort
     }
@@ -108,7 +108,7 @@ func onUserClickedButton(_ credentials: Credentials) {
 However, if we run the above code with an invalid username as input (such as “alex-jiang”), we’ll end up with a quite obscure 
 error message displayed in our errorLabel:
 
-```bash
+```text
 The operation couldn’t be completed. (App.ValidationError error 2.)
 ```
 
@@ -152,3 +152,5 @@ With the above change in place, our validation error from before will now get di
 ```text
 Your username can't contain the character '-'
 ```
+
+## Human readable error
