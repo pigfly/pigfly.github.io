@@ -92,74 +92,124 @@ Bingo, we can now avoid checking the optional value and let the compiler guarant
 Also, this design concept has been adopted in [Swift Package Manager](https://github.com/apple/swift-package-manager/blob/master/Sources/Basic/Result.swift)
 and [Alamofire](https://github.com/Alamofire/Alamofire/blob/master/Source/Result.swift)
 
-## Too much throw ?
+## E: Error Or E ?
 
-Although, having to always define a new `Error` type for each validation logic might again generate unnecessary boilerplate code
-(especially if all we want to do with an error is to display it to the user) 
-
-So,  let's also introduce a function that lets us write validation logic by simply passing a Bool condition and a 
-message to display to the user in case of a failure:
+The original [proposal](https://github.com/apple/swift-evolution/pull/757) for adding `Result<T>` to standard library is as follows:
 
 ```swift
-struct ValidationError: LocalizedError {
-    let errorMessage: String
-    var errorDescription: String? { return errorMessage }
+enum Result<T> {
+    case success(T)
+    case failure(Error)
 }
+```
 
-func validate(
-    _ condition: @autoclosure () -> Bool,
-    errorMessage messageClosure: @autoclosure () -> String
-) throws
-    {
-    guard condition() else {
-        let message = messageClosure()
-        throw ValidationError(message: message)
-    }
-}
-``` 
+The original proposal only apply type constraint for success case, leaving the failure case unbound.
 
-## Put it together
+One would argue why not apply the same type constraint for failure case ?
 
-With the above in place, we can now implement all of our validation logic as different validators - 
-constructed using computed static properties on the Validator type. 
-
-For example, here's how we might implement a validator for credentials:
+Because the `Error` design in swift is nothing but a protocol, we do not need to specify the error type when throwing error:
 
 ```swift
-extension Validator where Value == String {
-    static var credentials: Validator {
-        return Validator { string in
-            try validate(
-                string.count >= 7,
-                errorMessage: "credentials must contain min 7 characters"
-            )
+func methodCanThrow() throws {
+    if somethingGoesWrong { ... }
+}
 
-            try validate(
-                string.lowercased() != string,
-                errorMessage: "credentials must contain an uppercased character"
-            )
-
-            try validate(
-                string.uppercased() != string,
-                errorMessage: "credentials must contain a lowercased character"
-            )
-        }
-    }
-    
-    static var password: Validator {
-        ...
+do {
+    try methodCanThrow()
+} catch {
+    if error is SomeErrorType {
+        // ...
+    } else if error is AnotherErrorType {
+        // ...
     }
 }
 ```
 
-As above, we create a validator type with a rule that contains three different pieces of validation logic.
+However, if we have something like `Result<T, E: Error>`, then we need to specify a concrete error type for `E`. By doing this,
+will violate the design principle behind the `Error`, since things like `Result<Response, Error>` is not allowed in swift.
 
-If any of the three validation logic fails, it will throw a `ValidationError` with the message to indicate why it will fail.
+## The pros for `Result<T, E: Error>`
 
-## One step further
+There are pros and cons for these two errors type, let's take a look at the pros first. 
 
-let's create another validate overload that'll act as a bit of *syntactic sugar*, by letting us call it with the value 
-we wish to validate and the validator to use:
+1. Rely on the compiler to lock down the error type:
+
+```swift
+enum UserRegisterError: Error {
+    case duplicatedUsername
+    case unsafePassword
+}
+
+userService.register("user", "password") {
+    result: Result<User, UserRegisterError> in
+    switch result {
+    case .success(let user):
+        print("User registered: \(user)")
+    case .failure(let error):
+        if error == .duplicatedUsername {
+            // ...
+        } else if error == .unsafePassword {
+            // ...
+        }
+    }
+}
+```
+
+As above, the error type has been identified as `UserRegisterError` in compiler, it would be trivial to do error handling in failure case.
+
+2. Easy to extend `Result<T, E: Error>`
+
+For example, some asynchronous operations may never fail, and for these operations, we don't have to use switch to check the branch.
+
+A good example is `Timer`, the asynchronous operation will always guarantee to succeed, we could use a special type to address this:
+
+```swift
+enum NoError: Error {}
+
+func run(after: TimeInterval, 
+         done: @escaping (Result<Timer, NoError>) -> Void ) 
+    {
+        Timer.scheduledTimer(withTimeInterval: after, repeats: false) { timer in
+            done(.success(timer))
+        }
+    }
+}
+```
+
+we would suppose to write our code like this:
+
+```swift
+run(after: 2) { result in
+    switch result {
+    case .success(let timer):
+        print(timer)
+    case .failure:
+        fatalError("Never happen")
+    }
+}
+```
+
+However, with the extension for `NoError`, things become much easier:
+
+```swift
+extension Result where E == NoError {
+    var value: T {
+        if case .success(let v) = self {
+            return v
+        }
+        fatalError("Never happen")
+    }
+}
+
+run(after: 2) {
+    // $0.value is the timer object
+    print($0.value)
+}
+```
+
+## The cons for `Result<T, E: Error>`
+
+There are pros and cons for these two errors type, let's take a look at the pros first.
 
 ```swift
 func validate<T>(_ value: T,
