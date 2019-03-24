@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "On Software Exception Handling 1"
+title: "On Software Exception Handling 2"
 date: 2018-04-11 07:33:33 +1000
 comments: true
 header-img: "img/post-bg-10.jpg"
 categories: [software-engineering, exception-handling]
-reading_time: "10 mins"
+reading_time: "20 mins"
 ---
 
 These series are the reflection and study when I was leading an engineering team for all the aspects of software development.
@@ -63,7 +63,7 @@ Using the above, we'll be able to create validators that throw an error whenever
 
 ## Too much throw ?
 
-Although, having to always define a new `Error` type for each validation process might again generate unnecessary boilerplate 
+Although, having to always define a new `Error` type for each validation logic might again generate unnecessary boilerplate code
 (especially if all we want to do with an error is to display it to the user) 
 
 So,  let's also introduce a function that lets us write validation logic by simply passing a Bool condition and a 
@@ -78,7 +78,8 @@ struct ValidationError: LocalizedError {
 func validate(
     _ condition: @autoclosure () -> Bool,
     errorMessage messageClosure: @autoclosure () -> String
-) throws {
+) throws
+    {
     guard condition() else {
         let message = messageClosure()
         throw ValidationError(message: message)
@@ -88,96 +89,75 @@ func validate(
 
 ## Put it together
 
-With the above in place, we can now implement all of our validation logic as dedicated validators - 
+With the above in place, we can now implement all of our validation logic as different validators - 
 constructed using computed static properties on the Validator type. 
 
 For example, here's how we might implement a validator for credentials:
 
 ```swift
 extension Validator where Value == String {
-    static var password: Validator {
+    static var credentials: Validator {
         return Validator { string in
             try validate(
                 string.count >= 7,
-                errorMessage: "Password must contain min 7 characters"
+                errorMessage: "credentials must contain min 7 characters"
             )
 
             try validate(
                 string.lowercased() != string,
-                errorMessage: "Password must contain an uppercased character"
+                errorMessage: "credentials must contain an uppercased character"
             )
 
             try validate(
                 string.uppercased() != string,
-                errorMessage: "Password must contain a lowercased character"
+                errorMessage: "credentials must contain a lowercased character"
             )
         }
     }
-}
-```
-Since we marked the above function with throws, we’re now required to prefix any call to it with the `try` keyword — 
-which in turn forces us to handle any errors thrown from it (or to convert its return value into an optional using `try?`).
-
-For example, here we’re using our function to get user information on the button clicked, 
-if the validation passed (no error was thrown), then we’ll continue by submitting that username to local storage service. 
-— otherwise, we display the error that was encountered using a UILabel:
-
-```swift
-func onUserClickedButton(_ credentials: Credentials) {
-    do {
-        try getUserInfo(with credentials: credentials)
-    } catch {
-        errorLabel.text = error.localizedDescription
+    
+    static var password: Validator {
+        ...
     }
 }
 ```
 
-## Human readable error
+As above, we create a validator type with a rule that contains three different pieces of validation logic.
 
-However, if we run the above code with an invalid username as input (such as “alex-jiang”), we’ll end up with a quite obscure 
-error message displayed in our errorLabel:
+If any of the three validation logic fails, it will throw a `ValidationError` with the message to indicate why it will fail.
 
-```text
-The operation couldn’t be completed. (App.ValidationError error 2.)
-```
+## One step further
 
-That's not great, perhaps it's even more confusing. 
-
-We do not know what to do if we see this message, even worse, we’re 
-exposing implementation details (such as the name of the error type) to the user.
-
-Fortunately, we can borrow the power from `localized`. We just need to let our `ValidationError` conform to `LocalizedError`.
-
-By doing that, and implementing its `errorDescription` property — we can now return an appropriate, localized message for each error case:
+let's create another validate overload that'll act as a bit of *syntactic sugar*, by letting us call it with the value 
+we wish to validate and the validator to use:
 
 ```swift
-extension ValidationError: LocalizedError {
-    var errorDescription: String? {
-        switch self {
-        case .lengthTooShort:
-            return NSLocalizedString(
-                "Your username needs to be at least 4 characters long",
-                comment: ""
-            )
-        case .lengthTooLong:
-            return NSLocalizedString(
-                "Your username can't be longer than 14 characters",
-                comment: ""
-            )
-        case .invalidCharacter(let character):
-            let format = NSLocalizedString(
-                "Your username can't contain the character '%@'",
-                comment: ""
-            )
-
-            return String(format: format, String(character))
-        }
-    }
+func validate<T>(_ value: T,
+                 using validator: Validator<T>) throws {
+    try validator.rule(value)
 }
 ```
 
-With the above change in place, our validation error from before will now get displayed in a much more user-friendly way:
+The above will let us make our code requiring input validation very nice and clean:
 
-```text
-Your username can't contain the character '-'
+```swift
+func getUserInfo(with credentials: Credentials) throws -> User {
+    try validate(credentials.username, using: .credentials)
+    try validate(credentials.password, using: .password)
+    
+    // Additional validation
+    ...
+
+    localStorageService.getUserInfo(with: credentials) ...
+}
+```
+
+Perhaps even better, is that we can now deal with all validation errors in a single place, and then simply display the 
+`localized` description of any thrown error to the user:
+
+```swift
+do {
+    try getUserInfo(with: credentials)
+} catch {
+    errorLabel.text = error.localizedDescription
+}
 ```
