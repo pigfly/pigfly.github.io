@@ -27,11 +27,11 @@ it needs to validate the given credential is legit or not:
 ```swift
 func getUserInfo(with credentials: Credentials) -> User? {
     guard credentials.username.count >= 4 else {
-        return
+        return nil
     }
 
     guard credentials.password.count >= 10 else {
-        return
+        return nil
     }
 
     // Additional validation
