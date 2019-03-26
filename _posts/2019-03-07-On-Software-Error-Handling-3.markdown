@@ -289,9 +289,51 @@ struct AnyError: Error {
 
 However, by using `Result<Value, AnyError>`, we lose all the benefits that `Result<T, E: Error>` bring to us.
 
+## Part of Swift 5
+
+A good news is the `Result<T>` becomes part of standard library in Swift 5🎉, so individual frameworks and apps no longer 
+have to define their own — and more importantly, no longer have to convert between different flavors of the same kind of type.
+
+There is also another proposal which comes along with `Result<T>`, that is `Error` protocol is *self-conforming*🤔.
+
+That is, the above NSError-based technique is no longer necessary in Swift 5:
+
+```swift
+extension URLSession {
+    func dataTask(
+        with request: URLRequest, 
+        completionHandler: @escaping (Result<(Data, URLResponse), Error>) -> Void) 
+        -> URLSessionDataTask 
+    {
+        return dataTask(with: request) { data, response, error in
+            if error != nil {
+                completionHandler(.failure(error!))
+            } else {
+                completionHandler(.success((data!, response!)))
+            }
+        }
+    }
+}
+```
+
+Very neat! 😎
+
+Also, Swift 5’s implementation of Result includes a get() method, that either returns the result’s value, or throws an error:
+
+```swift
+extension Result {
+    func get() throws -> Value {
+        switch self {
+        case .success(let value):
+            return value
+        case .failure(let error):
+            throw error
+        }
+    }
+}
+```
+
 ## Conclusion
 
 Though a more sophisticated [proposal](https://github.com/apple/swift-evolution/blob/af284b519443d3d985f77cc366005ea908e2af59/proposals/0192-non-exhaustive-enums.md) 
 has been put in place to address all these issues, error handling is a tricky balance between the language designer and the language consumer.
-
-Error handling is difficult in life, so is in our programming language design...
