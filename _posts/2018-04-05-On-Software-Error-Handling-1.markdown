@@ -152,5 +152,3 @@ With the above change in place, our validation error from before will now get di
 ```text
 Your username can't contain the character '-'
 ```
-
-## Human readable error
